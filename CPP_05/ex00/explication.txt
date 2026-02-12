@@ -1,0 +1,15 @@
+Excepciones:
+
+Las excepciones en c++, son un mecanismo para manejar errores o situaciones inesperadas 
+(como división por cero o falta de memoria) que ocurren durante la ejecución de un programa,
+evitando su cierre inesperado. Permiten separar la lógica de error del flujo normal del código
+mediante bloques try, catch y throw, facilitando la creación de programas robustos y ordenados.
+
+Componentes clave del manejo de excepciones:
+
+-throw (Lanzar): Cuando ocurre un error, se "lanza" una excepción utilizando la palabra clave throw,
+ la cual puede ser de cualquier tipo (aunque generalmente se usan clases derivadas de std::exception).
+
+-try (Intentar): Envuelve un bloque de código que podría lanzar una excepción.
+
+-catch (Capturar): Sigue al bloque try y contiene el código para manejar la excepción específica. 
