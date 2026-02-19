@@ -6,13 +6,13 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/12 13:52:17 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/19 14:08:37 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(): name("Default"), grade(1){
+Bureaucrat::Bureaucrat(): name("Default"), grade(150){
 	std::cout << "Default constructor of Bureaucrat called\n";
 }
 Bureaucrat::Bureaucrat(const Bureaucrat& other): name(other.name), grade(other.grade){
@@ -55,6 +55,7 @@ void Bureaucrat::decrementGrade()
 		grade++;
 	return;
 }
+
 std::ostream &operator<<(std::ostream& out, Bureaucrat const& obj)
 {
 	out << obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl;
