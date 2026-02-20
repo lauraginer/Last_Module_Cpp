@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:56 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/19 14:08:14 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/20 19:46:42 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
 #include <exception>
 
 class Bureaucrat {
-	public:
+	private:
 		const std::string name;
 		int grade;
+		
+	public:
 		Bureaucrat();
+		Bureaucrat(const std::string &nick, int number);
   		Bureaucrat(const Bureaucrat& other);
     	Bureaucrat& operator=(const Bureaucrat& other);
 		~Bureaucrat();

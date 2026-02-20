@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/19 14:08:37 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/20 19:48:24 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 Bureaucrat::Bureaucrat(): name("Default"), grade(150){
 	std::cout << "Default constructor of Bureaucrat called\n";
+}
+Bureaucrat::Bureaucrat(const std::string &nick, int number): name(nick), grade(number){
+	if(number < 1)
+		throw GradeTooHighException();
+	if(number > 150)
+		throw GradeTooLowException();
+	std::cout << "Parametrized constructor of Bureaucrat called\n";
 }
 Bureaucrat::Bureaucrat(const Bureaucrat& other): name(other.name), grade(other.grade){
 	std::cout << "Copy constructor of Bureaucrat called\n";
@@ -47,12 +54,16 @@ void Bureaucrat::incrementGrade()
 {
 	if(grade >= 1 && grade <= 150)
 		grade--;
+	if(grade < 1)
+		throw GradeTooHighException();
 	return;
 }
 void Bureaucrat::decrementGrade()
 {
 	if(grade >= 1 && grade <= 150)
 		grade++;
+	if(grade > 150)
+		throw GradeTooLowException();
 	return;
 }
 

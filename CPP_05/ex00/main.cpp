@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:59 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/19 20:42:08 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/20 20:02:25 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,65 @@
 
 int main()
 {
-	Bureaucrat juan;
-	Bureaucrat supervisor;
-	Bureaucrat wrong;
-	
-	std::cout << juan;
-	std::cout << supervisor;
-	std::cout << wrong; //esta mal, no hace las excepciones
-	juan.setGrade(30);
-	supervisor.setGrade(101);
-	juan.incrementGrade();
-	supervisor.decrementGrade();
-	wrong.incrementGrade();
-	std::cout << "despues de incrementar: " << juan;
-	std::cout << "despues de decrementar: " << supervisor;
-	std::cout << "wrong: " << wrong;
-
-//excepciones
+	std::cout << std::endl;
 	try
 	{
- 	   if(juan.grade <= 0)
-			throw Bureaucrat::GradeTooHighException();
-	   if(juan.grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+		std::cout << "--TEST 1: JUAN AND SUPERVISOR WITH RIGHT GRADE--\n";
+ 	   	Bureaucrat juan;
+		Bureaucrat supervisor("Admin", 101);
+		Bureaucrat pablo("Pablo", 130); // Constructor con parametros
+		Bureaucrat salva("Salvador", 7); // Constructor con parametros
+		std::cout << std::endl;
+		std::cout << juan;
+		std::cout << supervisor;
+		std::cout << pablo;
+		std::cout << salva;
+		juan.setGrade(30);
+		juan.incrementGrade();
+		supervisor.decrementGrade();
+		pablo.incrementGrade();
+		std::cout << "Despues de incrementar: " << juan;
+		std::cout << "Despues de decrementar: " << supervisor;
+		std::cout << "Despues de incrementar: " << pablo;
+		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
-    	std::cout << "Error: Invalid grade.\n";
+    	std::cout << "Exception caught: " << e.what() << std::endl;
 	}
+	try
+	{
+		std::cout << std::endl;
+		std::cout << "--TEST 2: HIGH AND HIGH2--\n";
+		Bureaucrat hight2("random", 160);
+		/*Bureaucrat hight;
+		std::cout << std::endl;
+		std::cout << hight;
+		hight.decrementGrade();
+		std::cout << "hight: " << hight;
+		std::cout << std::endl;*/
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+	try
+	{
+		std::cout << std::endl;
+		std::cout << "--TEST 3: LOW AND LOW2--\n";
+		Bureaucrat low2("modnar", -5);
+		/*Bureaucrat low;
+		std::cout << std::endl;
+		std::cout << low;
+		low.setGrade(1);
+		low.incrementGrade();
+		std::cout << "low: " << low;
+		std::cout << std::endl;*/
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+	
 	return(0);
 }
