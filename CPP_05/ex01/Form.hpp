@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:13:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/02/23 21:15:34 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/02/24 13:58:05 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 #include "iostream"
 #include <exception>
 
+class Bureaucrat;
+
 class Form {
 	private:
 		const std::string name;
-		bool signed;
+		bool is_signed;
 		const int grade_sign; // Grado mínimo requerido para FIRMAR
 		const int grade_execute; // Grado mínimo requerido para EJECUTAR 
 		
@@ -33,7 +35,7 @@ class Form {
 		std::string getName() const;
 		bool getSigned() const;
 		int getGradeSign() const;
-		int getgradeExecute() const;
+		int getGradeExecute() const;
 
 		void beSigned(const Bureaucrat &obj);
 		class GradeTooHighException : public std::exception{

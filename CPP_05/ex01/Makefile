@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+         #
+#    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/10 13:48:04 by lginer-m          #+#    #+#              #
-#    Updated: 2026/02/23 20:13:56 by lauragm          ###   ########.fr        #
+#    Updated: 2026/02/24 13:57:38 by lginer-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CPPFLAGS := -Wall -Wextra -Werror -std=c++98 \
 
 OBJS_DIR := build
 
-SRCS = main.cpp Bureaucrat.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
 
 BLUE = \033[0;34m

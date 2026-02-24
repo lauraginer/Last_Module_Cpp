@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/23 20:30:11 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/02/24 16:50:31 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(): name("Default"), grade(150){
 	std::cout << "Default constructor of Bureaucrat called\n";
@@ -69,8 +70,21 @@ void Bureaucrat::decrementGrade()
 
 std::ostream &operator<<(std::ostream& out, Bureaucrat const& obj)
 {
-	out << obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl;
+	out << "Bureaucrat " << obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl;
     return(out);
 }
 
+void Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		if(form.getSigned() == true)
+			std::cout << "Bureaucrat " << getName() << " signed " << "Form " << form.getName() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+    	std::cout << "Exception caught in signForm: " << e.what() << std::endl;
+	}
+}
 

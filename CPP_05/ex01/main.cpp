@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:59 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/23 19:26:21 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/02/24 16:38:50 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 int main()
@@ -18,30 +19,24 @@ int main()
 	std::cout << std::endl;
 	try
 	{
-		std::cout << "--TEST 1: JUAN AND SUPERVISOR WITH RIGHT GRADE--\n";
- 	   	Bureaucrat juan;
-		Bureaucrat supervisor("Admin", 101);
-		Bureaucrat pablo("Pablo", 130); // Constructor con parametros
-		Bureaucrat salva("Salvador", 7); // Constructor con parametros
+		std::cout << "--TEST 1: PABLO AND SUPERVISOR WITH RIGHT GRADE--\n";
 		std::cout << std::endl;
-		std::cout << juan;
+		Bureaucrat supervisor("Admin", 101);
+		Form pablo("Pablo", 130, 50);
+		std::cout << std::endl;
 		std::cout << supervisor;
 		std::cout << pablo;
-		std::cout << salva;
-		juan.setGrade(30);
-		juan.incrementGrade();
 		supervisor.decrementGrade();
-		pablo.incrementGrade();
-		std::cout << "Despues de incrementar: " << juan;
 		std::cout << "Despues de decrementar: " << supervisor;
-		std::cout << "Despues de incrementar: " << pablo;
+		supervisor.signForm(pablo);
+		std::cout << pablo;
 		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
     	std::cout << "Exception caught: " << e.what() << std::endl;
 	}
-	try
+	/*try
 	{
 		std::cout << std::endl;
 		std::cout << "--TEST 2: HIGH AND HIGH2--\n";
@@ -62,18 +57,18 @@ int main()
 		std::cout << std::endl;
 		std::cout << "--TEST 3: LOW AND LOW2--\n";
 		Bureaucrat low2("modnar", -5);
-		/*Bureaucrat low;
+		Bureaucrat low;
 		std::cout << std::endl;
 		std::cout << low;
 		low.setGrade(1);
 		low.incrementGrade();
 		std::cout << "low: " << low;
-		std::cout << std::endl;*/
+		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
+	}*/
 	
 	return(0);
 }
