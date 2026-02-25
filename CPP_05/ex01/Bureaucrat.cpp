@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/24 16:50:31 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/25 20:04:05 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void Bureaucrat::decrementGrade()
 
 std::ostream &operator<<(std::ostream& out, Bureaucrat const& obj)
 {
-	out << "Bureaucrat " << obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl;
+	out << obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl;
     return(out);
 }
 
@@ -80,11 +80,11 @@ void Bureaucrat::signForm(Form &form)
 	{
 		form.beSigned(*this);
 		if(form.getSigned() == true)
-			std::cout << "Bureaucrat " << getName() << " signed " << "Form " << form.getName() << std::endl;
+			std::cout << getName() << " signed " << form.getName() << std::endl;
 	}
 	catch (std::exception& e)
 	{
-    	std::cout << "Exception caught in signForm: " << e.what() << std::endl;
+    	std::cout << getName() << " couldn't sign " << form.getName() << " because..." << e.what() << std::endl;
 	}
 }
 

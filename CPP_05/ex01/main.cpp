@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:59 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/24 16:38:50 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/25 19:53:26 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ int main()
 	{
     	std::cout << "Exception caught: " << e.what() << std::endl;
 	}
-	/*try
+	try
 	{
 		std::cout << std::endl;
-		std::cout << "--TEST 2: HIGH AND HIGH2--\n";
-		Bureaucrat hight2("random", 160);
-		Bureaucrat hight;
+		std::cout << "--TEST 2: CRISTINA HASN'T ENOUGH GRADE--\n";
+		Form cristina("Cristina", 149, 100);
+		Bureaucrat worker("worker", 150);
 		std::cout << std::endl;
-		std::cout << hight;
-		hight.decrementGrade();
-		std::cout << "hight: " << hight;
+		std::cout << worker;
+		worker.signForm(cristina);
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
@@ -55,20 +54,19 @@ int main()
 	try
 	{
 		std::cout << std::endl;
-		std::cout << "--TEST 3: LOW AND LOW2--\n";
-		Bureaucrat low2("modnar", -5);
-		Bureaucrat low;
+		std::cout << "--TEST 3: SIGNED TWICE--\n";
+		Bureaucrat b1("B1", 20);
+		Bureaucrat b2("B2", 30);
+		Form f("Form", 50, 25);
 		std::cout << std::endl;
-		std::cout << low;
-		low.setGrade(1);
-		low.incrementGrade();
-		std::cout << "low: " << low;
+		b1.signForm(f);
+		b2.signForm(f);
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}*/
+		std::cerr << e.what() << '\n';
+	}
 	
 	return(0);
 }

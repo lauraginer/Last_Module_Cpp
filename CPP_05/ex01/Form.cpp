@@ -6,14 +6,14 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:23:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/02/24 16:42:11 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/25 20:02:53 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(): name("Default"), is_signed(false), grade_sign(150), grade_execute(150){
+Form::Form(): name("Default"), is_signed(false), grade_sign(140), grade_execute(140){
 	std::cout << "Default constructor of Form called\n";
 }
 Form::Form(const std::string &nick, const int sign, const int exe) : name(nick), is_signed(false), grade_sign(sign), grade_execute(exe){
@@ -55,6 +55,8 @@ int Form::getGradeExecute() const
 }
 void Form::beSigned(const Bureaucrat &obj)
 {
+	if(is_signed == true)
+		throw std::runtime_error("Form already signed!");
 	if(obj.getGrade() <= grade_sign)
 		is_signed = true;
 	else
@@ -62,7 +64,7 @@ void Form::beSigned(const Bureaucrat &obj)
 }
 std::ostream &operator<<(std::ostream& out, Form const& obj)
 {
-	out << "Form " << obj.getName();
+	out << obj.getName();
 	if(obj.getSigned() == true)
 		out << " signed!" << std::endl;
 	else
