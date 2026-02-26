@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:13:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/02/24 13:58:05 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:56:43 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include "iostream"
 #include <exception>
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 	private:
 		const std::string name;
 		bool is_signed;
@@ -26,11 +26,11 @@ class Form {
 		const int grade_execute; // Grado mínimo requerido para EJECUTAR 
 		
 	public:
-		Form();
-		Form(const std::string &nick, const int sign, const int exe);
-  		Form(const Form& other);
-    	Form& operator=(const Form& other);
-		~Form();
+		AForm();
+		AForm(const std::string &nick, const int sign, const int exe);
+  		AForm(const AForm& other);
+    	AForm& operator=(const AForm& other);
+		virtual ~AForm() = 0;
 		
 		std::string getName() const;
 		bool getSigned() const;
@@ -51,5 +51,5 @@ class Form {
 				}
 		};
 };
-std::ostream &operator<<(std::ostream& out, Form const& obj);
+std::ostream &operator<<(std::ostream& out, AForm const& obj);
 #endif

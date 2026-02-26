@@ -1,59 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:23:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/02/25 20:07:15 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:01:38 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(): name("Default"), is_signed(false), grade_sign(140), grade_execute(140){
-	std::cout << "Default constructor of Form called\n";
+AForm::AForm(): name("Default"), is_signed(false), grade_sign(140), grade_execute(140){
+	std::cout << "Default constructor of AForm called\n";
 }
-Form::Form(const std::string &nick, const int sign, const int exe) : name(nick), is_signed(false), grade_sign(sign), grade_execute(exe){
+AForm::AForm(const std::string &nick, const int sign, const int exe) : name(nick), is_signed(false), grade_sign(sign), grade_execute(exe){
 	if (grade_sign < 1 || grade_execute < 1)
-    	throw Form::GradeTooHighException();
+    	throw AForm::GradeTooHighException();
 	if (grade_sign > 150 || grade_execute > 150)
-    	throw Form::GradeTooLowException();
-	std::cout << "Parametrized constructor of Form called\n";
+    	throw AForm::GradeTooLowException();
+	std::cout << "Parametrized constructor of AForm called\n";
 }
-Form::Form(const Form& other): name(other.name), is_signed(other.is_signed), grade_sign(other.grade_sign), grade_execute(other.grade_execute) {
-	std::cout << "Copy constructor of Form called\n";
+AForm::AForm(const AForm& other): name(other.name), is_signed(other.is_signed), grade_sign(other.grade_sign), grade_execute(other.grade_execute) {
+	std::cout << "Copy constructor of AForm called\n";
 }
-Form& Form::operator=(const Form& other)
+AForm& AForm::operator=(const AForm& other)
 {
-	std::cout << "Copy assignment operator of Form called\n";
+	std::cout << "Copy assignment operator of AForm called\n";
 	if(this != &other)
 		is_signed = other.is_signed;
 	return(*this);
 }
-Form:: ~Form()
+AForm:: ~AForm()
 {
-	std::cout << "Destructor of Form called\n";
+	std::cout << "Destructor of AForm called\n";
 }
-std::string Form::getName() const
+std::string AForm::getName() const
 {
 	return(name);
 }
-bool Form::getSigned() const
+bool AForm::getSigned() const
 {
 	return(is_signed);
 }
-int Form::getGradeSign() const
+int AForm::getGradeSign() const
 {
 	return(grade_sign);
 }
-int Form::getGradeExecute() const
+int AForm::getGradeExecute() const
 {
 	return(grade_execute);
 }
-void Form::beSigned(const Bureaucrat &obj)
+void AForm::beSigned(const Bureaucrat &obj)
 {
 	if(is_signed == true)
 		throw std::runtime_error("has already signed!");
@@ -62,7 +62,7 @@ void Form::beSigned(const Bureaucrat &obj)
 	else
 		throw GradeTooLowException();
 }
-std::ostream &operator<<(std::ostream& out, Form const& obj)
+std::ostream &operator<<(std::ostream& out, AForm const& obj)
 {
 	out << obj.getName();
 	if(obj.getSigned() == true)
