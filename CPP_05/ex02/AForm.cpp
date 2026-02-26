@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:23:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/02/26 13:01:38 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/26 18:53:05 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int AForm::getGradeExecute() const
 void AForm::beSigned(const Bureaucrat &obj)
 {
 	if(is_signed == true)
-		throw std::runtime_error("has already signed!");
+		throw GradeIsAlreadySigned();
 	if(obj.getGrade() <= grade_sign)
 		is_signed = true;
 	else
@@ -74,3 +74,20 @@ std::ostream &operator<<(std::ostream& out, AForm const& obj)
 	out << "Execute Grade " << obj.getGradeExecute() << std::endl;
     return(out);
 }
+
+void AForm::execute(Bureaucrat const &executor) const
+{
+	if(getSigned() == true)
+	{
+		std::cout << getName() << " has signed!\n";
+		if(executor.getGrade() <= getGradeExecute())
+			std::cout << executor.getName() << " has the great grade for execute" << std::endl;
+		else
+			throw GradeNotExecute(); //hay que controlar la excepcion (el bloque este de cach con un mensaje personalizao)
+	}
+	else
+		throw GradeNotSigned(); //hay que controlar la excepcion de mierda de los cojones junto a la anterior
+	
+	//executeAction(); hay que implementar esta funcion en las demas clases para que hagan su accion especifica
+}
+
