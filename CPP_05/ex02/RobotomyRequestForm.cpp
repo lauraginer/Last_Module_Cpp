@@ -6,44 +6,47 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:34:18 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/26 15:39:40 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:28:19 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib>
+#include <ctime>
 
-RobotomyRequestForm::RobotomyRequestForm(): target("Default"), grade_sign(72), grade_execute(45){
+RobotomyRequestForm::RobotomyRequestForm(): AForm("Robotomy Request", 72, 45), target("Default")
+{
 	std::cout << "Default constructor of RobotomyRequestForm called\n";
 }
-RobotomyRequestForm::RobotomyRequestForm(std::string &subject) : target(subject), grade_sign(72), grade_execute(45)
+
+RobotomyRequestForm::RobotomyRequestForm(const std::string &subject): AForm("Robotomy Request", 72, 45), target(subject)
 {
 	std::cout << "Parametrized constructor of RobotomyRequestForm called\n";
-	if (grade_sign < 1 || grade_execute < 1)
-	{
-		std::cout << "Invalid grade. Can't be too hight";
-		return ;
-	}
-    	return ;
-	if (grade_sign > 150 || grade_execute > 150)
-	{
-		std::cout << "Invalid grade. Can't be too low";
-		return ;
-	}
 }
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other): target(other.target), grade_sign(other.grade_sign), grade_execute(other.grade_execute) {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other): AForm(other), target(other.target){
 	std::cout << "Copy constructor of RobotomyRequestForm called\n";
 }
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
 	std::cout << "Copy assignment operator of RobotomyRequestForm called\n";
 	if(this != &other)
+	{
+		AForm::operator=(other);
 		target = other.target;
+	}
 	return(*this);
 }
 RobotomyRequestForm:: ~RobotomyRequestForm()
 {
 	std::cout << "Destructor of RobotomyRequestForm called\n";
 }
-
-//Hace unos ruidos de taladro y luego informa de que <target> ha sido robotomizado con éxito el 50% de las veces.
-//En el resto de casos, informa de que la robotomía ha fallado.
+void RobotomyRequestForm::executeAction() const
+{
+	std::cout << "DRRRRRRRRRRRRRRRRRRR..\n";
+	srand(time(NULL));
+	int num = rand() % 2;
+	if(!num)
+		std::cout << target << " failed in the process of robotomy...\n";
+	else
+		std::cout << target << " has been robotomized successfully!\n";
+}

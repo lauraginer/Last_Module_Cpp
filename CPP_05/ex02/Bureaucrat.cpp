@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/26 13:03:31 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 12:54:08 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ int Bureaucrat::getGrade() const
 {
 	return(grade);
 }
-
 void Bureaucrat::setGrade(int number)
 {
 	grade = number;
 }
-
 void Bureaucrat::incrementGrade()
 {
 	if(grade >= 1 && grade <= 150)
@@ -73,7 +71,6 @@ std::ostream &operator<<(std::ostream& out, Bureaucrat const& obj)
 	out << obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl;
     return(out);
 }
-
 void Bureaucrat::signForm(AForm &form)
 {
 	try
@@ -85,6 +82,18 @@ void Bureaucrat::signForm(AForm &form)
 	catch (std::exception& e)
 	{
     	std::cout << getName() << " couldn't sign " << form.getName() << " because..." << e.what() << std::endl;
+	}
+}
+void Bureaucrat::executeForm(AForm const & form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << getName() << " executed " << form.getName();
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << getName() << " couldn't execute " << form.getName() << " because..." << e.what() << std::endl;
 	}
 }
 

@@ -6,44 +6,59 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:12:09 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/26 13:50:45 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:14:07 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(): target("Default"), grade_sign(145), grade_execute(137){
+ShrubberyCreationForm::ShrubberyCreationForm()
+	: AForm("Shrubbery Creation", 145, 137), target("Default")
+{
 	std::cout << "Default constructor of ShrubberyCreationForm called\n";
 }
-ShrubberyCreationForm::ShrubberyCreationForm(std::string &subject) : target(subject), grade_sign(145), grade_execute(137)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &subject) : AForm("Shrubbery Creation", 145, 137), target(subject)
 {
 	std::cout << "Parametrized constructor of ShrubberyCreationForm called\n";
-	if (grade_sign < 1 || grade_execute < 1)
-	{
-		std::cout << "Invalid grade. Can't be too hight";
-		return ;
-	}
-    	return ;
-	if (grade_sign > 150 || grade_execute > 150)
-	{
-		std::cout << "Invalid grade. Can't be too low";
-		return ;
-	}
 }
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other): target(other.target), grade_sign(other.grade_sign), grade_execute(other.grade_execute) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other): AForm(other), target(other.target){
 	std::cout << "Copy constructor of ShrubberyCreationForm called\n";
 }
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
 	std::cout << "Copy assignment operator of ShrubberyCreationForm called\n";
 	if(this != &other)
+	{
+		AForm::operator=(other);
 		target = other.target;
+
+	}
 	return(*this);
 }
 ShrubberyCreationForm:: ~ShrubberyCreationForm()
 {
 	std::cout << "Destructor of ShrubberyCreationForm called\n";
 }
-
+void ShrubberyCreationForm::executeAction() const
+{
+	std::string filename = target + "_shrubbery";
+	std::string content;
+	
+	std::ofstream outfile(filename.c_str()); //Crear archivo de salida
+	if (!outfile.is_open())
+	{
+		std::cout << "Error: could not create output file" << std::endl;
+		return ;
+	}
+	outfile << "       /\\\n";
+    outfile << "      /**\\\n";
+    outfile << "     /****\\\n";
+    outfile << "    /******\\\n";
+    outfile << "   /********\\\n";
+    outfile << "       ||\n";
+    outfile << "       ||\n";
+	outfile.close();
+}
 // hay que crear un puto archivo de mierda con el nombre de target + "-shrubbery", para poner un puto arbol ascii de
 // puta mierda como el puto CPP01, recuerda la libreria fstream

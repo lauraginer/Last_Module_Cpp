@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:23:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/02/26 18:53:05 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 12:55:16 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ void AForm::execute(Bureaucrat const &executor) const
 		if(executor.getGrade() <= getGradeExecute())
 			std::cout << executor.getName() << " has the great grade for execute" << std::endl;
 		else
-			throw GradeNotExecute(); //hay que controlar la excepcion (el bloque este de cach con un mensaje personalizao)
+			throw GradeNotExecute();
 	}
 	else
-		throw GradeNotSigned(); //hay que controlar la excepcion de mierda de los cojones junto a la anterior
-	
-	//executeAction(); hay que implementar esta funcion en las demas clases para que hagan su accion especifica
+		throw GradeNotSigned(); 
+	executeAction();
+	// Las excepciones se controlan en Bureaucrat
 }
 

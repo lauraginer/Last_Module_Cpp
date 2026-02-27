@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 14:00:34 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/26 15:35:23 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:19:42 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 #define ROBOTOMYREQUESTFORM_HPP
 
 #include "iostream"
+#include "AForm.hpp"
 #include <exception>
 
 class Bureaucrat;
 
-class RobotomyRequestForm {
+class RobotomyRequestForm : public AForm{
 	private:
 		std::string target;
-		const int grade_sign; // Grado mínimo requerido para FIRMAR
-		const int grade_execute; // Grado mínimo requerido para EJECUTAR 
 		
 	public:
 		RobotomyRequestForm();
-		RobotomyRequestForm(std::string &subject);
+		RobotomyRequestForm(const std::string &subject);
   		RobotomyRequestForm(const RobotomyRequestForm& other);
     	RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		~RobotomyRequestForm();
+		virtual void executeAction() const;
+
 };
 
 #endif

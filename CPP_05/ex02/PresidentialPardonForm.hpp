@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:42:20 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/26 17:47:24 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:23:47 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 #define PRESIDENTIALPARDONFORM_HPP
 
 #include "iostream"
+#include "AForm.hpp"
 #include <exception>
 
 class Bureaucrat;
 
-class PresidentialPardonForm {
+class PresidentialPardonForm : public AForm{
 	private:
 		std::string target;
-		const int grade_sign; // Grado mínimo requerido para FIRMAR
-		const int grade_execute; // Grado mínimo requerido para EJECUTAR 
 		
 	public:
 		PresidentialPardonForm();
-		PresidentialPardonForm(std::string &subject);
+		PresidentialPardonForm(const std::string &subject);
   		PresidentialPardonForm(const PresidentialPardonForm& other);
     	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 		~PresidentialPardonForm();
+		virtual void executeAction()  const;
 };
 
 #endif

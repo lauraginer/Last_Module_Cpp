@@ -6,12 +6,15 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:59 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/26 13:03:09 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 18:03:52 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include <iostream>
 
 int main()
@@ -58,6 +61,8 @@ int main()
 		Bureaucrat b1("B1", 20);
 		Bureaucrat b2("B2", 30);
 		//AForm f("AForm", 50, 25);
+		ShrubberyCreationForm prueba("home");
+		prueba.executeAction();
 		std::cout << std::endl;
 		//b1.signForm(f);
 		//b2.signForm(f);
