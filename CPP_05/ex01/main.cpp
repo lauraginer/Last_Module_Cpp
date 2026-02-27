@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:59 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/25 19:53:26 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/02/27 20:01:49 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Exception caught: " << e.what() << '\n';
 	}
 	
 	return(0);
