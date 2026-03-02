@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:12:09 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/27 19:14:07 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/02 16:10:03 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
 	std::cout << "Copy assignment operator of ShrubberyCreationForm called\n";
 	if(this != &other)
-	{
 		AForm::operator=(other);
-		target = other.target;
-
-	}
 	return(*this);
 }
 ShrubberyCreationForm:: ~ShrubberyCreationForm()
@@ -51,6 +47,8 @@ void ShrubberyCreationForm::executeAction() const
 		std::cout << "Error: could not create output file" << std::endl;
 		return ;
 	}
+	else
+		std::cout << "*The file " << filename << " has been created*\n";
 	outfile << "       /\\\n";
     outfile << "      /**\\\n";
     outfile << "     /****\\\n";
@@ -58,6 +56,7 @@ void ShrubberyCreationForm::executeAction() const
     outfile << "   /********\\\n";
     outfile << "       ||\n";
     outfile << "       ||\n";
+	outfile << " /-/_-/-/-/-/-/-/\n";
 	outfile.close();
 }
 // hay que crear un puto archivo de mierda con el nombre de target + "-shrubbery", para poner un puto arbol ascii de

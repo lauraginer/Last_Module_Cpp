@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:06:02 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/27 19:14:17 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/02 16:10:36 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm{
 	private:
-		std::string target;
+		const std::string target;
 		
 	public:
 		ShrubberyCreationForm();
 		ShrubberyCreationForm(const std::string &subject);
   		ShrubberyCreationForm(const ShrubberyCreationForm& other);
     	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
-		~ShrubberyCreationForm();
+		virtual ~ShrubberyCreationForm();
 		virtual void executeAction() const;
 
 };

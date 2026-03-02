@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:13:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/02/26 18:55:33 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/02 15:44:15 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class AForm {
 		AForm(const std::string &nick, const int sign, const int exe);
   		AForm(const AForm& other);
     	AForm& operator=(const AForm& other);
-		~AForm();
+		virtual ~AForm();
 		
 		std::string getName() const;
 		bool getSigned() const;

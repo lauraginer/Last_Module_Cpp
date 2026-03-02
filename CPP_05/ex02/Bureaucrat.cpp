@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/27 12:54:08 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/02 13:21:25 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void Bureaucrat::executeForm(AForm const & form) const
 	try
 	{
 		form.execute(*this);
-		std::cout << getName() << " executed " << form.getName();
+		std::cout << getName() << " executed " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

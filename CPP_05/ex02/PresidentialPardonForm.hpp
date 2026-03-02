@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:42:20 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/27 19:23:47 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/02 16:10:48 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ class Bureaucrat;
 
 class PresidentialPardonForm : public AForm{
 	private:
-		std::string target;
+		const std::string target;
 		
 	public:
 		PresidentialPardonForm();
 		PresidentialPardonForm(const std::string &subject);
   		PresidentialPardonForm(const PresidentialPardonForm& other);
     	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
-		~PresidentialPardonForm();
+		virtual ~PresidentialPardonForm();
 		virtual void executeAction()  const;
 };
 

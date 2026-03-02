@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:34:18 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/27 19:28:19 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/02 16:09:52 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 {
 	std::cout << "Copy assignment operator of RobotomyRequestForm called\n";
 	if(this != &other)
-	{
 		AForm::operator=(other);
-		target = other.target;
-	}
 	return(*this);
 }
 RobotomyRequestForm:: ~RobotomyRequestForm()
