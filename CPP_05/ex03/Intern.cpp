@@ -6,36 +6,59 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 16:56:30 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/05 13:34:43 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/09 19:58:18 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(): AForm("Presidential Pardon", 25, 5), target("Default")
+Intern::Intern()
 {
-	std::cout << "Default constructor of PresidentialPardonForm called\n";
+	std::cout << "Default constructor of Intern called\n";
 }
-
-PresidentialPardonForm::PresidentialPardonForm(const std::string &subject): AForm("Presidential Pardon", 25, 5), target(subject)
+Intern::Intern(const Intern& other){
+	std::cout << "Copy constructor of Intern called\n";
+	(void)other;
+}
+Intern& Intern::operator=(const Intern& other)
 {
-	std::cout << "Parametrized constructor of PresidentialPardonForm called\n";
-}
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other): AForm(other), target(other.target){
-	std::cout << "Copy constructor of PresidentialPardonForm called\n";
-}
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
-{
-	std::cout << "Copy assignment operator of PresidentialPardonForm called\n";
+	std::cout << "Copy assignment operator of Intern called\n";
 	if(this != &other)
-		AForm::operator=(other);
+	{
+		(void)other;
+	}
 	return(*this);
 }
-PresidentialPardonForm:: ~PresidentialPardonForm()
+Intern:: ~Intern()
 {
-	std::cout << "Destructor of PresidentialPardonForm called\n";
+	std::cout << "Destructor of Intern called\n";
 }
-void PresidentialPardonForm::executeAction() const
+AForm* Intern::makeForm(std::string form, std::string target)
 {
-	std::cout << target << " has been pardoned by Zaphod Beeblebrox\n";
+	std::string valid_names[3] = { "presidential pardon", 
+	"robotomy request", "shrubbery creation"};
+	int i = 0;
+	while(i < 3)
+	{
+		if(valid_names[i] == form)
+			break;
+		i++;
+	}
+	switch(i)
+	{
+		case 0:
+			std::cout << "Intern creates " << form << std::endl;
+			return (new PresidentialPardonForm(target));
+		case 1:
+			std::cout << "Intern creates " << form << std::endl;
+			return (new RobotomyRequestForm(target));
+		case 2:
+			std::cout << "Intern creates " << form << std::endl;
+			return(new ShrubberyCreationForm(target));
+		default:
+			throw Intern::FormDoesNotExist();
+	}
 }

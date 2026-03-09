@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:59 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/02 16:11:16 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/09 20:16:50 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <iostream>
 
 int main()
@@ -22,90 +23,77 @@ int main()
 	std::cout << std::endl;
 	try
 	{
-		std::cout << "--TEST 1: TRYING WITH BOBBY AND ADMIN--\n";
+		std::cout << "--TEST 1: TEST FROM SUBJECT--\n";
+    	Intern someRandomIntern;
+    	AForm* rrf;
+    	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 		std::cout << std::endl;
-		Bureaucrat supervisor("Admin", 101);
-		ShrubberyCreationForm bobby("Home");
-		std::cout << std::endl;
-		std::cout << supervisor;
-		supervisor.decrementGrade();
-		std::cout << "Despues de decrementar: " << supervisor;
-		bobby.beSigned(supervisor);
-		supervisor.executeForm(bobby);
-		std::cout << std::endl;
-		std::cout << bobby;
-		std::cout << std::endl;
+		delete rrf;
 	}
 	catch (std::exception& e)
 	{
-    	std::cout << "Exception caught: " << e.what() << std::endl;
+		std::cout << "Intern catch an incident: " << e.what() << std::endl;
 	}
 	try
 	{
 		std::cout << std::endl;
-		std::cout << "--TEST 2: TRYING WITH TOM AND HURRACA--\n";
+		std::cout << "--TEST 2: TESTING ALL FORMS--\n";
+		Intern intern;
+		AForm* form1 = intern.makeForm("shrubbery creation", "home");
+    	AForm* form2 = intern.makeForm("robotomy request", "prision");
+    	AForm* form3 = intern.makeForm("presidential pardon", "hospital");
 		std::cout << std::endl;
-		RobotomyRequestForm tom ("Comercial");
-		PresidentialPardonForm hurraca("Aquavelis");
-		Bureaucrat supervisor("Boss", 4);
-		tom.beSigned(supervisor);
-		supervisor.executeForm(tom);
+ 		std::cout << *form1 << std::endl;
+    	std::cout << *form2 << std::endl;
+    	std::cout << *form3 << std::endl;
+    	delete form1;
+    	delete form2;
+    	delete form3;
+
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Intern catch an incident: " << e.what() << std::endl;
+	}
+	try
+	{
 		std::cout << std::endl;
-		std::cout << tom;
+		std::cout << "--TEST 3: TESTING WITH MORE INTERNS AND EXECUTING--\n";
+		Intern intern;
+		Intern paca;
+		Bureaucrat boss("Boss", 1);
+		AForm* form1 = intern.makeForm("shrubbery creation", "restaurant");
+    	AForm* form2 = paca.makeForm("presidential pardon", "El Retiro");
 		std::cout << std::endl;
-		
-		hurraca.beSigned(supervisor);
-		supervisor.executeForm(hurraca);
+ 		std::cout << *form1 << std::endl;
+    	std::cout << *form2 << std::endl;
+		form2->beSigned(boss);
+		boss.executeForm(*form2);
 		std::cout << std::endl;
-		std::cout << hurraca;
+    	delete form1;
+    	delete form2;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Intern catch an incident: " << e.what() << std::endl;	
+	}
+	try
+	{
 		std::cout << std::endl;
+		std::cout << "--TEST 4: WRONG CLASSES--\n";
+		Intern random;
+		AForm* form1 = random.makeForm("shr ubbery creation      ", "restaurant");
+    	AForm* form2 = random.makeForm("pResiDentiAL PARDON", "El Retiro");
+		std::cout << std::endl;
+    	delete form1;
+    	delete form2;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Intern catch an incident: " << e.what() << std::endl;
+	}
 	
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << std::endl;
-		std::cout << "--TEST 3: TRYING WITH WRONG GRADES--\n";
-		std::cout << std::endl;
-		RobotomyRequestForm jose ("Lidl");
-		PresidentialPardonForm maria("Mercadona");
-		Bureaucrat random("random member", 71);
-		Bureaucrat supervisor("member of staff", 7);
-		jose.beSigned(random);
-		random.executeForm(jose);
-		std::cout << std::endl;
-		std::cout << jose;
-		std::cout << std::endl;
-		
-		maria.beSigned(supervisor);
-		supervisor.executeForm(maria);
-		std::cout << std::endl;
-		std::cout << maria;
-		std::cout << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << std::endl;
-		std::cout << "--TEST 4: TESTING MEMORY--\n";
-		std::cout << std::endl;
-    	ShrubberyCreationForm* form = new ShrubberyCreationForm("test");
-    	Bureaucrat admin("Admin", 1);
-    	form->beSigned(admin);
-		std::cout << std::endl;
-		std::cout << admin;
-		std::cout << std::endl;
-   		delete form;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
+	
+	
 	return(0);
 }
