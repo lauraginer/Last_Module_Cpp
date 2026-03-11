@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:56 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/23 20:29:38 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/03/11 17:28:29 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ class Bureaucrat {
 		}; // Clase anidada(inception de clases)
 		class GradeTooLowException : public std::exception{
 			public:
-				const char *what() const throw(){
-					return("Grade is too low!");
-				}
+				const char *what() const throw();
 		};
 };
 std::ostream &operator<<(std::ostream& out, Bureaucrat const& obj);

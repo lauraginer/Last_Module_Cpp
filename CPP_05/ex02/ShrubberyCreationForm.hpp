@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:06:02 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/02 16:10:36 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/10 12:50:25 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 #include "iostream"
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 #include <exception>
-
-class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm{
 	private:

@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/25 20:04:05 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:09:00 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,11 @@ void Bureaucrat::signForm(Form &form)
 	}
 }
 
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return("Grade is too low!");
+}
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return("Grade is too high!");
+}

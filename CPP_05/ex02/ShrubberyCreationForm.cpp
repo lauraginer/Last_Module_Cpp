@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:12:09 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/09 16:17:10 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:31:17 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,3 @@ void ShrubberyCreationForm::executeAction() const
 	outfile << " /-/_-/-/-/-/-/-/\n";
 	outfile.close();
 }
-// hay que crear un puto archivo de mierda con el nombre de target + "-shrubbery", 
-//para poner un puto arbol ascii de
-// puta mierda como el puto CPP01, recuerda la libreria fstream

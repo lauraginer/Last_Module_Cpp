@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 16:56:33 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/09 20:18:15 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:44:33 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ class Intern{
 
 		class FormDoesNotExist : public std::exception{
 			public:
-				const char *what() const throw(){
-					return("Unfortunately, Form doesn't exit in files");
-				}
+				const char *what() const throw();
 		};
 };
 

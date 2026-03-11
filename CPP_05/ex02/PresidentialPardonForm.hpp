@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:42:20 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/02 16:10:48 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/10 12:48:38 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 #include "iostream"
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 #include <exception>
-
-class Bureaucrat;
 
 class PresidentialPardonForm : public AForm{
 	private:

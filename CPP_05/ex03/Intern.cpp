@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 16:56:30 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/09 19:58:18 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:46:12 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,8 @@ AForm* Intern::makeForm(std::string form, std::string target)
 		default:
 			throw Intern::FormDoesNotExist();
 	}
+}
+const char* Intern::FormDoesNotExist::what() const throw()
+{
+	return("Unfortunately, Form doesn't exit in files");
 }

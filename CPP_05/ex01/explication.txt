@@ -1,4 +1,0 @@
-DECLARACION ADELANTADA
-
-como va a saber el compilador cuales excepciones hay que escoger sis e llaman iguales,
-al igual que el operador de asignacion????

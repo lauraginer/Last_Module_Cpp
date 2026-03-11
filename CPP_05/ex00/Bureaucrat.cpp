@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:53 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/23 20:29:48 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/03/11 17:29:44 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,7 @@ std::ostream &operator<<(std::ostream& out, Bureaucrat const& obj)
     return(out);
 }
 
-
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return("Grade is too low!");
+}

@@ -6,31 +6,31 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 20:23:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/03/02 12:09:28 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:17:16 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm(): name("Default"), is_signed(false), grade_sign(140), grade_execute(140){
+AForm::AForm(): name("Default"), isSigned(false), gradeSign(140), gradeExecute(140){
 	std::cout << "Default constructor of AForm called\n";
 }
-AForm::AForm(const std::string &nick, const int sign, const int exe) : name(nick), is_signed(false), grade_sign(sign), grade_execute(exe){
-	if (grade_sign < 1 || grade_execute < 1)
+AForm::AForm(const std::string &nick, const int sign, const int exe) : name(nick), isSigned(false), gradeSign(sign), gradeExecute(exe){
+	if (gradeSign < 1 || gradeExecute < 1)
     	throw AForm::GradeTooHighException();
-	if (grade_sign > 150 || grade_execute > 150)
+	if (gradeSign > 150 || gradeExecute > 150)
     	throw AForm::GradeTooLowException();
 	std::cout << "Parametrized constructor of AForm called\n";
 }
-AForm::AForm(const AForm& other): name(other.name), is_signed(other.is_signed), grade_sign(other.grade_sign), grade_execute(other.grade_execute) {
+AForm::AForm(const AForm& other): name(other.name), isSigned(other.isSigned), gradeSign(other.gradeSign), gradeExecute(other.gradeExecute) {
 	std::cout << "Copy constructor of AForm called\n";
 }
 AForm& AForm::operator=(const AForm& other)
 {
 	std::cout << "Copy assignment operator of AForm called\n";
 	if(this != &other)
-		is_signed = other.is_signed;
+		isSigned = other.isSigned;
 	return(*this);
 }
 AForm:: ~AForm()
@@ -43,22 +43,22 @@ std::string AForm::getName() const
 }
 bool AForm::getSigned() const
 {
-	return(is_signed);
+	return(isSigned);
 }
 int AForm::getGradeSign() const
 {
-	return(grade_sign);
+	return(gradeSign);
 }
 int AForm::getGradeExecute() const
 {
-	return(grade_execute);
+	return(gradeExecute);
 }
 void AForm::beSigned(const Bureaucrat &obj)
 {
-	if(is_signed == true)
+	if(isSigned == true)
 		throw GradeIsAlreadySigned();
-	if(obj.getGrade() <= grade_sign)
-		is_signed = true;
+	if(obj.getGrade() <= gradeSign)
+		isSigned = true;
 	else
 		throw GradeTooLowException();
 }
@@ -89,5 +89,30 @@ void AForm::execute(Bureaucrat const &executor) const
 		throw GradeNotSigned(); 
 	executeAction();
 	// Las excepciones se controlan en Bureaucrat
+}
+
+const char* AForm::GradeTooHighException::what() const throw()
+{
+	return ("Oops. Grade is too high!");
+}
+
+const char* AForm::GradeTooLowException::what() const throw()
+{
+	return("Oops. Grade isn't enought!");
+}
+
+const char* AForm::GradeIsAlreadySigned::what() const throw()
+{
+	return("has already signed!");
+}
+
+const char* AForm::GradeNotSigned::what() const throw()
+{
+	return("can't be signed");
+}
+
+const char* AForm::GradeNotExecute::what() const throw()
+{
+	return("doesn't have enought grade for execute");
 }
 
