@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:56 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/11 17:28:29 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/12 16:02:40 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ class Bureaucrat {
 		
 		class GradeTooHighException : public std::exception{
 			public:
-				const char *what() const throw(){
-					return ("Grade is too high!");
-				}
-		}; // Clase anidada(inception de clases)
+				const char *what() const throw();
+		};
+		
 		class GradeTooLowException : public std::exception{
 			public:
 				const char *what() const throw();

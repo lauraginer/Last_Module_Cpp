@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:47:56 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/02/27 12:33:03 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/03/12 16:01:45 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,12 @@ class Bureaucrat {
 		void executeForm(AForm const & form) const;
 		class GradeTooHighException : public std::exception{
 			public:
-				const char *what() const throw(){
-					return ("Grade is too high!");
-				}
-		}; // Clase anidada(inception de clases)
+				const char *what() const throw();
+		};
+		
 		class GradeTooLowException : public std::exception{
 			public:
-				const char *what() const throw(){
-					return("Grade is too low!");
-				}
+				const char *what() const throw();
 		};
 };
 std::ostream &operator<<(std::ostream& out, Bureaucrat const& obj);
