@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:39 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/03/31 15:38:11 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:51:22 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ class ScalarConverter{
 				const char *what() const throw();
 		};
 };
-void controlLength(std::string &str, int &n, float &fnum, double &dnum);
+//int controlLength(std::string &str, int &n, float &fnum, double &dnum);
 // controla la longitud y con esto sabes hasta que punto transformarlo
 // si es mas largo que int_max_length
-bool controlType(char c, int n, float fnum, double dnum);
-
+//bool controlType(char c, int n, float fnum, double dnum);
+bool controlChar(std::string &str, int &n, float &fnum, double &dnum);
+bool controlInt(int &n, float &fnum, double &dnum);
 #endif
