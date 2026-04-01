@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:36 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/01 18:14:22 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/01 21:37:46 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void ScalarConverter::convert(std::string literal)
 	double dnum = 0;
 	if(controlChar(literal, n, fnum, dnum))
 		std::cout << "char: " << static_cast<char>(n) << std::endl;
+	if(controlInt(n, fnum, dnum))
+		std::cout << "int: " << n << std::endl;
 
 	/*if(controlLength(literal, n, fnum, dnum) != 0)
 	{
@@ -62,7 +64,6 @@ void ScalarConverter::convert(std::string literal)
 		std::cout << "char: " << c << std::endl;
 		std::cout << "int: " << n << std::endl;
 	}*/
-	std::cout << "int: " << n << std::endl;
 	std::cout << "float: " << fnum << std::endl;
 	std::cout << "double: " << dnum << std::endl;
 }
@@ -96,10 +97,14 @@ bool controlChar(std::string &str, int &n, float &fnum, double &dnum)
 }
 bool controlInt(int &n, float &fnum, double &dnum)
 {
-	if(n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max())
+	if(n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max() || std::isnan(dnum) || std::isinf(dnum))
 	{
 		std::cout << "int: Impossible" << std::endl;
 		return(false);
 	}
+	//hay que controlar el casteo de limites ANTES de pasarlo a atoi, porque se corrompe y queda un rsultado indefinido
+	/*Si quieres que eso sea correcto, no uses atoi para decidir si el int es válido. Usa strtol o strtoll, comprueba errno y el puntero final, y solo asigna n 
+	si el número cabe de verdad en el rango de int. Al parecer se podría controlar en controlChar para que salga imposible*/
+	(void)fnum;
 	return(true);
 }
