@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:39 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/02 19:52:42 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/02 20:28:08 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ class ScalarConverter{
 //bool controlType(char c, int n, float fnum, double dnum);
 bool controlChar(std::string &str, int &n, float &fnum, double &dnum);
 bool controlInt(std::string &str, int &n, double &dnum);
+bool controlFloat(std::string &str, float &fnum, double &dnum);
 #endif

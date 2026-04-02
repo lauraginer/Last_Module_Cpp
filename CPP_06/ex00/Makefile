@@ -6,13 +6,13 @@
 #    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/12 16:21:26 by lginer-m          #+#    #+#              #
-#    Updated: 2026/03/12 17:43:32 by lginer-m         ###   ########.fr        #
+#    Updated: 2026/04/02 21:02:10 by lginer-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := convert
 CC := c++
-CPPFLAGS := -Wall -Wextra -Werror -std=c++98 \
+CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 		# -fsanitize=address,undefined \
 		#-Wunreachable-code -Ofast \
 

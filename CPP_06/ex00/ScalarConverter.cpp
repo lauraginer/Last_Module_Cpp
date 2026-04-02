@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:36 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/02 19:57:20 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/02 21:35:30 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <limits>
+#include <iomanip>
 
 ScalarConverter::ScalarConverter()
 {
@@ -46,27 +47,13 @@ void ScalarConverter::convert(std::string literal)
 	float fnum = 0;
 	double dnum = 0;
 	if(controlChar(literal, n, fnum, dnum))
-		std::cout << "char: " << static_cast<char>(n) << std::endl;
+		std::cout << "char: " << static_cast<unsigned char>(n) << std::endl;
 	if(controlInt(literal, n, dnum))
 		std::cout << "int: " << n << std::endl;
+	if(controlFloat(literal, fnum, dnum))
+		std::cout << "float: " << std::fixed << std::setprecision(1) << fnum << "f" << std::endl; //para forzar decimales
 
-	/*if(controlLength(literal, n, fnum, dnum) != 0)
-	{
-		std::cout << "char: Non displayable " << std::endl;
-	}*/
-	//Detectar tipo, convertir, imprimir resultados
-	/*if(!(controlType(c, n, fnum, dnum) && !controlLength(literal, n, fnum, dnum)))
-	{
-		std::cout << "char: Impossible" << std::endl;
-		std::cout << "int: Impossible" << std::endl;
-	}
-	else
-	{
-		std::cout << "char: " << c << std::endl;
-		std::cout << "int: " << n << std::endl;
-	}*/
-	std::cout << "float: " << fnum << std::endl;
-	std::cout << "double: " << dnum << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << dnum << std::endl;
 }
 const char* ScalarConverter::GeneralError::what() const throw()
 {
@@ -125,5 +112,20 @@ bool controlInt(std::string &str, int &n, double &dnum)
 	return(true);
 	//es mejor que el codigo sea repetitivo que modificarlo absolutamente todo para que quede mas limpio, el horno no esta pa bollos
 }
+bool controlFloat(std::string &str, float &fnum, double &dnum)
+{
+	if(str.size() == 1 && !std::isdigit(static_cast<unsigned char>(str[0])))
+		return(true);
+	char *endptr = NULL;
+	fnum = strtof(str.c_str(), &endptr);
+	if(endptr == str.c_str() || *endptr != '\0' || errno == ERANGE)
+	{
+		std::cout << "float: Impossible" << std::endl;
+		return(false);
+	}
+	(void)dnum;
+	return(true);
 
+	//LOS LITERALES FLOAT Y DNUM se controlan en los dos primeros datos, al parecer
+}
 //yo no se si esto tiene mucho sentido me agobia mucho tener que convertir otros tipos de datos antes que el que corresponde pero bueno
