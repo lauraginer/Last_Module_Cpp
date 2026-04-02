@@ -6,11 +6,12 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:36 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/01 21:37:46 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/02 19:57:20 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cerrno>
 #include <cctype>
 #include <cmath>
 #include <cstdlib>
@@ -46,7 +47,7 @@ void ScalarConverter::convert(std::string literal)
 	double dnum = 0;
 	if(controlChar(literal, n, fnum, dnum))
 		std::cout << "char: " << static_cast<char>(n) << std::endl;
-	if(controlInt(n, fnum, dnum))
+	if(controlInt(literal, n, dnum))
 		std::cout << "int: " << n << std::endl;
 
 	/*if(controlLength(literal, n, fnum, dnum) != 0)
@@ -74,37 +75,55 @@ const char* ScalarConverter::GeneralError::what() const throw()
 
 bool controlChar(std::string &str, int &n, float &fnum, double &dnum)
 {	
-	n = atoi(str.c_str());
-	fnum = atof(str.c_str());
-	dnum = strtod(str.c_str(), NULL); //mejor convertirlo aqui ya que lo hacemos desde la str
-	if(!(str.size() > 0 && str.size() < 4))
+	if (str.size() == 1 && !std::isdigit(static_cast<unsigned char>(str[0])))
 	{
-		std::cout << "char: Non displayable" << std::endl;
-		return(false);
+		n = static_cast<unsigned char>(str[0]);
+		fnum = static_cast<float>(n);
+		dnum = static_cast<double>(n); //por si acaso
+		if(!std::isprint(static_cast<unsigned char>(n))) //lo convertimos porque sino no devuelve en ascii
+		{
+			std::cout << "char: Non displayable" << std::endl;
+			return (false);
+		}
+		return(true);
 	}
-	char converted = static_cast<char>(n); //si no lo convertimos, lo toma desde ascii
-	if (!std::isprint(static_cast<unsigned char>(converted)))
-	{
-		std::cout << "char: Non displayable\n";
-		return(false);
-	}
-	if(std::isnan(dnum) || std::isinf(dnum) || n < 0 || n > 127)
+	errno = 0; //para controlar la flag de ERANGE
+	char *endptr = NULL;
+	long value = strtol(str.c_str(), &endptr, 10); //para convertir luego a int, porque strtol devuelve long
+	dnum = strtod(str.c_str(), NULL);
+	fnum = static_cast<float>(dnum);
+	if(endptr == str.c_str() || *endptr != '\0' || errno == ERANGE
+		|| std::isnan(dnum) || std::isinf(dnum) || value < 0 || value > 127)
 	{
 		std::cout << "char: Impossible" << std::endl;
 		return(false);
 	}
+	n = static_cast<int>(value);
+	if(!std::isprint(static_cast<unsigned char>(n)))
+	{
+		std::cout << "char: Non displayable" << std::endl;
+		return(false);
+	}
 	return(true);
+	//ES mejor separar el casteo del cast por si es numerico o no lo es, y asi paso de validar dos veces con atoi y strtol
+	//ademas, no tiene sentido validar el tamaño de size si luego controlamos sus limites
 }
-bool controlInt(int &n, float &fnum, double &dnum)
+bool controlInt(std::string &str, int &n, double &dnum)
 {
-	if(n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max() || std::isnan(dnum) || std::isinf(dnum))
+	if(str.size() == 1 && !std::isdigit(static_cast<unsigned char>(str[0])))
+		return (true);
+	errno = 0;
+	char *endptr = NULL;
+	long value = strtol(str.c_str(), &endptr, 10);
+	if(endptr == str.c_str() || *endptr != '\0' || errno == ERANGE || value < std::numeric_limits<int>::min()
+		|| value > std::numeric_limits<int>::max() || std::isnan(dnum) || std::isinf(dnum))
 	{
 		std::cout << "int: Impossible" << std::endl;
 		return(false);
-	}
-	//hay que controlar el casteo de limites ANTES de pasarlo a atoi, porque se corrompe y queda un rsultado indefinido
-	/*Si quieres que eso sea correcto, no uses atoi para decidir si el int es válido. Usa strtol o strtoll, comprueba errno y el puntero final, y solo asigna n 
-	si el número cabe de verdad en el rango de int. Al parecer se podría controlar en controlChar para que salga imposible*/
-	(void)fnum;
+	} 
+	n = static_cast<int>(value); //un poco innecesario pero bueno
 	return(true);
+	//es mejor que el codigo sea repetitivo que modificarlo absolutamente todo para que quede mas limpio, el horno no esta pa bollos
 }
+
+//yo no se si esto tiene mucho sentido me agobia mucho tener que convertir otros tipos de datos antes que el que corresponde pero bueno
