@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:39 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/02 20:28:08 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/06 01:13:25 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 #include "iostream"
 
 class ScalarConverter{
-	public:
+	private:
 		ScalarConverter();
   		ScalarConverter(const ScalarConverter& other);
     	ScalarConverter& operator=(const ScalarConverter& other);
 		~ScalarConverter();
+	public:
 		
 		static void convert(std::string literal);
 		// static funciona para no hacer una instancia de una clase directamente (trabajamos con la clase directamente), 
@@ -30,11 +31,9 @@ class ScalarConverter{
 				const char *what() const throw();
 		};
 };
-//int controlLength(std::string &str, int &n, float &fnum, double &dnum);
-// controla la longitud y con esto sabes hasta que punto transformarlo
-// si es mas largo que int_max_length
-//bool controlType(char c, int n, float fnum, double dnum);
 bool controlChar(std::string &str, int &n, float &fnum, double &dnum);
-bool controlInt(std::string &str, int &n, double &dnum);
+bool controlInt(std::string &str, int &n, float &fnum, double &dnum);
 bool controlFloat(std::string &str, float &fnum, double &dnum);
+bool controlDouble(std::string &str, float &fnum, double &dnum);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:36 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/02 21:35:30 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/06 01:00:44 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,59 @@ ScalarConverter::~ScalarConverter()
 {
 	std::cout << "Destructor of ScalarConverter called\n";
 }
+
+static bool limits(const std::string &literal)
+{
+	return(literal == "nan" || literal == "+inf" || literal == "-inf"
+		|| literal == "nanf" || literal == "+inff" || literal == "-inff");
+}
+
+static bool isValidEnd(char *endptr)
+{
+	return (*endptr == '\0') || (*endptr == 'f' && *(endptr + 1) == '\0');
+}
+
+static void printLimits(const std::string &literal)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	if(literal == "nan" || literal == "nanf")
+	{
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+	}
+	else if(literal == "+inf" || literal == "+inff")
+	{
+		std::cout << "float: +inff" << std::endl;
+		std::cout << "double: +inf" << std::endl;
+	}
+	else
+	{
+		std::cout << "float: -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+	}
+}
+
 void ScalarConverter::convert(std::string literal)
 {
 	if(literal.empty())
 		throw ScalarConverter::GeneralError();
-	
+	if(limits(literal))
+	{
+		printLimits(literal);
+		return;
+	}
 	int n = 0;
 	float fnum = 0;
 	double dnum = 0;
 	if(controlChar(literal, n, fnum, dnum))
-		std::cout << "char: " << static_cast<unsigned char>(n) << std::endl;
-	if(controlInt(literal, n, dnum))
+		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+	if(controlInt(literal, n, fnum, dnum))
 		std::cout << "int: " << n << std::endl;
 	if(controlFloat(literal, fnum, dnum))
 		std::cout << "float: " << std::fixed << std::setprecision(1) << fnum << "f" << std::endl; //para forzar decimales
-
-	std::cout << "double: " << std::fixed << std::setprecision(1) << dnum << std::endl;
+	if(controlDouble(literal, fnum, dnum))
+		std::cout << "double: " << std::fixed << std::setprecision(1) << dnum << std::endl;
 }
 const char* ScalarConverter::GeneralError::what() const throw()
 {
@@ -74,18 +111,17 @@ bool controlChar(std::string &str, int &n, float &fnum, double &dnum)
 		}
 		return(true);
 	}
-	errno = 0; //para controlar la flag de ERANGE
+	errno = 0;
 	char *endptr = NULL;
-	long value = strtol(str.c_str(), &endptr, 10); //para convertir luego a int, porque strtol devuelve long
-	dnum = strtod(str.c_str(), NULL);
-	fnum = static_cast<float>(dnum);
-	if(endptr == str.c_str() || *endptr != '\0' || errno == ERANGE
-		|| std::isnan(dnum) || std::isinf(dnum) || value < 0 || value > 127)
+	double d = strtod(str.c_str(), &endptr);
+	if(endptr == str.c_str() || !isValidEnd(endptr) || errno == ERANGE || d < 0 || d > 127)
 	{
-		std::cout << "char: Impossible" << std::endl;
+		std::cout << "char: impossible" << std::endl;
 		return(false);
 	}
-	n = static_cast<int>(value);
+	n = static_cast<int>(d);
+	fnum = static_cast<float>(d);
+	dnum = d;
 	if(!std::isprint(static_cast<unsigned char>(n)))
 	{
 		std::cout << "char: Non displayable" << std::endl;
@@ -95,20 +131,31 @@ bool controlChar(std::string &str, int &n, float &fnum, double &dnum)
 	//ES mejor separar el casteo del cast por si es numerico o no lo es, y asi paso de validar dos veces con atoi y strtol
 	//ademas, no tiene sentido validar el tamaño de size si luego controlamos sus limites
 }
-bool controlInt(std::string &str, int &n, double &dnum)
+bool controlInt(std::string &str, int &n, float &fnum, double &dnum)
 {
 	if(str.size() == 1 && !std::isdigit(static_cast<unsigned char>(str[0])))
 		return (true);
 	errno = 0;
 	char *endptr = NULL;
 	long value = strtol(str.c_str(), &endptr, 10);
-	if(endptr == str.c_str() || *endptr != '\0' || errno == ERANGE || value < std::numeric_limits<int>::min()
-		|| value > std::numeric_limits<int>::max() || std::isnan(dnum) || std::isinf(dnum))
+	if(endptr != str.c_str() && *endptr == '\0' && errno != ERANGE 
+		&& value >= std::numeric_limits<int>::min()
+		&& value <= std::numeric_limits<int>::max()) 
 	{
-		std::cout << "int: Impossible" << std::endl;
+		n = static_cast<int>(value);
+		return(true);
+	}
+	errno = 0; //para comrobar los floats
+	char *finl = NULL;
+	dnum = strtod(str.c_str(), &finl);
+	if(finl == str.c_str() || !isValidEnd(finl) || errno == ERANGE || dnum < std::numeric_limits<int>::min() 
+		|| dnum > std::numeric_limits<int>::max())
+	{
+		std::cout << "int: impossible" << std::endl;
 		return(false);
-	} 
-	n = static_cast<int>(value); //un poco innecesario pero bueno
+	}
+	n = static_cast<int>(dnum);
+	(void)fnum;
 	return(true);
 	//es mejor que el codigo sea repetitivo que modificarlo absolutamente todo para que quede mas limpio, el horno no esta pa bollos
 }
@@ -116,16 +163,34 @@ bool controlFloat(std::string &str, float &fnum, double &dnum)
 {
 	if(str.size() == 1 && !std::isdigit(static_cast<unsigned char>(str[0])))
 		return(true);
+	errno = 0;
 	char *endptr = NULL;
 	fnum = strtof(str.c_str(), &endptr);
-	if(endptr == str.c_str() || *endptr != '\0' || errno == ERANGE)
+	if(endptr == str.c_str() || errno == ERANGE || !isValidEnd(endptr))
 	{
-		std::cout << "float: Impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
 		return(false);
 	}
+	(void)fnum;
 	(void)dnum;
 	return(true);
 
 	//LOS LITERALES FLOAT Y DNUM se controlan en los dos primeros datos, al parecer
+}
+bool controlDouble(std::string &str, float &fnum, double &dnum)
+{
+	(void)fnum;
+	if(str.size() == 1 && !std::isdigit(static_cast<unsigned char>(str[0])))
+		return(true);
+	errno = 0;
+	char *endptr = NULL;
+	dnum = strtod(str.c_str(), &endptr);
+	if(endptr == str.c_str() || !isValidEnd(endptr) || errno == ERANGE)
+	{
+		std::cout << "double: impossible" << std::endl;
+		return(false);
+	}
+	return(true);
+	
 }
 //yo no se si esto tiene mucho sentido me agobia mucho tener que convertir otros tipos de datos antes que el que corresponde pero bueno
