@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:36 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/06 01:00:44 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/04/06 01:45:44 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void ScalarConverter::convert(std::string literal)
 	}
 	int n = 0;
 	float fnum = 0;
-	double dnum = 0;
+	double dnum = std::numeric_limits<double>::quiet_NaN();
 	if(controlChar(literal, n, fnum, dnum))
 		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
 	if(controlInt(literal, n, fnum, dnum))
@@ -137,25 +137,16 @@ bool controlInt(std::string &str, int &n, float &fnum, double &dnum)
 		return (true);
 	errno = 0;
 	char *endptr = NULL;
-	long value = strtol(str.c_str(), &endptr, 10);
-	if(endptr != str.c_str() && *endptr == '\0' && errno != ERANGE 
-		&& value >= std::numeric_limits<int>::min()
-		&& value <= std::numeric_limits<int>::max()) 
-	{
-		n = static_cast<int>(value);
-		return(true);
-	}
-	errno = 0; //para comrobar los floats
-	char *finl = NULL;
-	dnum = strtod(str.c_str(), &finl);
-	if(finl == str.c_str() || !isValidEnd(finl) || errno == ERANGE || dnum < std::numeric_limits<int>::min() 
-		|| dnum > std::numeric_limits<int>::max())
+	double dn = strtod(str.c_str(), &endptr);
+	if(endptr == str.c_str() || !isValidEnd(endptr) || errno == ERANGE
+		|| dn < std::numeric_limits<int>::min() || dn > std::numeric_limits<int>::max())
 	{
 		std::cout << "int: impossible" << std::endl;
 		return(false);
 	}
-	n = static_cast<int>(dnum);
-	(void)fnum;
+	n = static_cast<int>(dn);
+	fnum = static_cast<float>(dn);
+	dnum = dn;
 	return(true);
 	//es mejor que el codigo sea repetitivo que modificarlo absolutamente todo para que quede mas limpio, el horno no esta pa bollos
 }
@@ -165,14 +156,19 @@ bool controlFloat(std::string &str, float &fnum, double &dnum)
 		return(true);
 	errno = 0;
 	char *endptr = NULL;
-	fnum = strtof(str.c_str(), &endptr);
+	double dd = strtod(str.c_str(), &endptr);
 	if(endptr == str.c_str() || errno == ERANGE || !isValidEnd(endptr))
 	{
 		std::cout << "float: impossible" << std::endl;
 		return(false);
 	}
-	(void)fnum;
-	(void)dnum;
+	fnum = static_cast<float>(dd);
+	if(std::isinf(fnum) || std::isnan(fnum))
+	{
+		std::cout << "float: impossible" << std::endl;
+		return(false);
+	}
+	dnum = dd;
 	return(true);
 
 	//LOS LITERALES FLOAT Y DNUM se controlan en los dos primeros datos, al parecer
