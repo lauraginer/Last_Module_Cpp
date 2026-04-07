@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:36 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/06 01:45:44 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/04/07 13:15:55 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void ScalarConverter::convert(std::string literal)
 	}
 	int n = 0;
 	float fnum = 0;
-	double dnum = std::numeric_limits<double>::quiet_NaN();
+	double dnum = 0;
 	if(controlChar(literal, n, fnum, dnum))
 		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
 	if(controlInt(literal, n, fnum, dnum))
