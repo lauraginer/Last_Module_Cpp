@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 14:58:25 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/07 18:25:19 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/08 13:08:19 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,13 @@ Serializer::~Serializer()
 {
 	std::cout << "Destructor of Serializer called\n";
 }
+
+Data* Serializer::deserialize(uintptr_t raw)
+{
+	return(reinterpret_cast<Data *>(raw)); 
+}
+uintptr_t Serializer::serialize(Data *ptr)
+{
+	return(reinterpret_cast<uintptr_t>(ptr)); //reinterpreta un tipo como si fuera otro, funciona bien entre punteros porque tienen el mismo formato físico
+}
+

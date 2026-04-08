@@ -6,7 +6,7 @@
 #    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/12 16:21:26 by lginer-m          #+#    #+#              #
-#    Updated: 2026/04/07 19:03:47 by lginer-m         ###   ########.fr        #
+#    Updated: 2026/04/08 13:11:24 by lginer-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 
 OBJS_DIR := build
 
-SRCS = main.cpp Serializer.cpp Data.cpp
+SRCS = main.cpp Serializer.cpp
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
 
 BLUE = \033[0;34m

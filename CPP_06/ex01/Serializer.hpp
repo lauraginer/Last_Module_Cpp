@@ -6,14 +6,14 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 14:58:21 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/07 18:24:07 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/08 13:24:06 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 
-#include <cstdint>
+#include <stdint.h>
 #include "Data.hpp"
 
 class Serializer{
@@ -24,10 +24,11 @@ class Serializer{
 		~Serializer();
 		
 	public:
-	Data* deserialize(uintptr_t raw);
-	//toma un puntero y lo convierte al tipo entero sin signo uintptr_t
-	static uintptr_t serialize(Data *ptr);
+	static Data* deserialize(uintptr_t raw);
 	//toma un parametro entero sin signo, y lo convierte en un puntero a Data
+	static uintptr_t serialize(Data *ptr);
+	//toma un puntero y lo convierte al tipo entero sin signo uintptr_t
+
 };
 
 //tenemos que utilizar serialize() en la direccion dek objeto Data y pasa su valor de retorno a deserialize()

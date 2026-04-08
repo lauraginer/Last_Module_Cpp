@@ -1,0 +1,24 @@
+Acerca de las clases no instanciables y las estructuras.
+
+-Clases no instanciables: En C++, una clase no instanciable es aquella de la cual 
+no se pueden crear objetos (instancias) directamente. Esto se utiliza comúnmente 
+para definir clases base abstractas o clases de utilidad que solo contienen métodos estáticos. 
+
+Pueden ser bien, las clases abstractas que hemos visto en anteriores ejercicios, o en este caso,
+Las clases de Utilidad(o Constructor Privado). Estas últimas se caracterizan por el constructor 
+por defecto (y otros constructores) en la sección private o protected de la clase, causando que 
+el compilador impida la creación de instancias fuera de la propia clase.
+
+Es util para clases que contienen solo métodos y miembros static (clases de utilidad o "helper").
+
+
+NOTA IMPORTANTE: si una clase no se puede instanciar desde fuera, entonces desde fuera solo puedes
+llamar a métodos static, porque un método no estático necesita un objeto real.
+
+La regla es esta:
+
+static = pertenece a la clase, se llama como Clase::funcion().
+no static = pertenece a una instancia, se llama como objeto.funcion().
+
+-Struct: La unica diferencia entre una clase y una estructura es la visibilidad por defecto, que es
+ public en las struct y private en las clases. Por lo demas se compone de la misma forma que una clase.
