@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 14:26:13 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/10 20:33:15 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/12 21:09:19 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define BASE_HPP
 
 #include "iostream"
-#include "Base.hpp"
 
 class A;
 class B;
