@@ -7,7 +7,7 @@ CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 
 OBJS_DIR := build
 
-SRCS = main.cpp Base.cpp A.cpp B.cpp C.cpp
+SRCS = main.cpp Base.cpp
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
 
 BLUE = \033[0;34m
