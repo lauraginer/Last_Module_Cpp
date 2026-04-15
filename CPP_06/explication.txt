@@ -1,24 +1,85 @@
-Acerca de las clases no instanciables y las estructuras.
-
--Clases no instanciables: En C++, una clase no instanciable es aquella de la cual 
-no se pueden crear objetos (instancias) directamente. Esto se utiliza comúnmente 
-para definir clases base abstractas o clases de utilidad que solo contienen métodos estáticos. 
-
-Pueden ser bien, las clases abstractas que hemos visto en anteriores ejercicios, o en este caso,
-Las clases de Utilidad(o Constructor Privado). Estas últimas se caracterizan por el constructor 
-por defecto (y otros constructores) en la sección private o protected de la clase, causando que 
-el compilador impida la creación de instancias fuera de la propia clase.
-
-Es util para clases que contienen solo métodos y miembros static (clases de utilidad o "helper").
+CPP_06 - Apuntes de casteo y tipos
 
 
-NOTA IMPORTANTE: si una clase no se puede instanciar desde fuera, entonces desde fuera solo puedes
-llamar a métodos static, porque un método no estático necesita un objeto real.
+1. Clases no instanciables
 
-La regla es esta:
+Una clase no instanciable es una clase de la que no se pueden crear objetos directamente.
+Se usa mucho para:
 
-static = pertenece a la clase, se llama como Clase::funcion().
-no static = pertenece a una instancia, se llama como objeto.funcion().
+- clases base abstractas
+- clases de utilidad
+- clases con constructor privado o protegido
 
--Struct: La unica diferencia entre una clase y una estructura es la visibilidad por defecto, que es
- public en las struct y private en las clases. Por lo demas se compone de la misma forma que una clase.
+La idea es evitar que el usuario haga algo como `Class obj;` desde fuera.
+
+En una clase no instanciable, desde fuera solo se pueden usar los miembros `static`, porque
+un metodo no static necesita un objeto real para ejecutarse.
+
+Regla rapida:
+
+- `static` pertenece a la clase y se llama como `Clase::funcion()`
+- no `static` pertenece a una instancia y se llama como `objeto.funcion()`
+
+
+2. `struct` vs `class`
+
+La unica diferencia real es la visibilidad por defecto:
+
+- en `struct`, por defecto es `public`
+- en `class`, por defecto es `private`
+
+Por lo demas, una `struct` puede tener constructores, metodos, herencia y todo lo que tiene una clase.
+
+
+3. Ex01 - Serialization y `reinterpret_cast`
+
+En este ejercicio se usa `reinterpret_cast` para convertir entre punteros y enteros sin cambiar el valor real de la direccion.
+
+`serialize(Data* ptr)`:
+
+- recibe un puntero a `Data`
+- lo convierte a `uintptr_t`
+- no copia el objeto
+- solo guarda su direccion en forma numerica
+
+`deserialize(uintptr_t raw)`:
+
+- recibe el entero con la direccion
+- lo vuelve a interpretar como `Data*`
+
+La conversion no modifica el objeto ni sus datos. Solo cambia la forma de representarlo.
+
+La prueba correcta es:
+
+- crear un objeto real de `Data`
+- guardar su direccion en un puntero
+- serializarlo
+- deserializarlo
+- comprobar que el puntero final coincide con el original
+
+
+4. Ex02 - Identify real type y `dynamic_cast`
+
+En este ejercicio se usa `dynamic_cast` para descubrir el tipo real de un objeto a traves de `Base`.
+
+Con punteros:
+
+- `dynamic_cast<A*>(p)` devuelve un puntero valido si el objeto realmente es `A`
+- si no lo es, devuelve `NULL`
+- por eso se puede comprobar con `if (dynamic_cast<A*>(p))`
+
+Con referencias:
+
+- `dynamic_cast<A&>(p)` devuelve una referencia si el tipo real es `A`
+- si falla, lanza una excepcion `std::bad_cast`
+- por eso hay que usar `try/catch`
+
+En la version con referencia no se puede usar un puntero dentro de la funcion, asi que la comprobacion debe hacerse directamente con referencias y excepciones.
+
+La idea del ejercicio es:
+
+- generar un objeto aleatorio de tipo `A`, `B` o `C`
+- recibirlo como `Base*`
+- identificar su tipo real con `identify(Base*)` y `identify(Base&)`
+
+`Base` tiene un destructor virtual para que `delete` funcione correctamente a traves del puntero `Base*`.
