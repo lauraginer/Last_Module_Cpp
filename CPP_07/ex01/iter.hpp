@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/15 21:12:24 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/17 18:44:44 by lginer-m         ###   ########.fr       */
+/*   Created: 2026/04/17 18:45:34 by lginer-m          #+#    #+#             */
+/*   Updated: 2026/04/17 19:17:54 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
 
-template <typename T>
-void swap(T &a, T &b)
+template <typename T, typename Function>
+void iter(T *addres, T const length, Function f)
 {
-	T temp;
-	temp = a;
-	a = b;
-	b = temp;
-}
-
-template <typename T>
-T min(T &n, T &m)
-{
-	if(n < m)
-		return(n);
-	return(m);
-}
-
-template <typename T>
-T max(T &o, T &l)
-{
-	if(o > l)
-		return(o);
-	return(l);
+	
 }
 #endif
+
+/*¿Cómo lo valida entonces?
+Cuando instancias iter(...), el compilador deduce Function a partir del tercer argumento y 
+luego intenta compilar esta línea dentro de iter.
+
+En definitiva, basicamente segun como trates el tipo de dato, el compilador lo toma de
+una forma o otra*/
