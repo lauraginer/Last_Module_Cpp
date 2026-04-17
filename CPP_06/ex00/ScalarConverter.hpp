@@ -6,14 +6,13 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:39 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/12 21:45:48 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:21:17 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERT_HPP
 #define SCALARCONVERT_HPP
 
-#include "iostream"
 
 class ScalarConverter{
 	private:
