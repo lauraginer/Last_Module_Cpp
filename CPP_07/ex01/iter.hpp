@@ -3,20 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:45:34 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/17 19:17:54 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/21 21:16:31 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITER_HPP
 #define ITER_HPP
 
+#include <iostream>
+#include <ostream>
+
 template <typename T, typename Function>
-void iter(T *addres, T const length, Function f)
+void iter(T *array, const size_t length, Function f)
 {
+	size_t len = 0;
 	
+	while(len < length)
+	{
+		f(array[len]);
+		len++;
+	}
+	std::cout << "The lenght of array by iter is: " << len << std::endl;
 }
 #endif
 
