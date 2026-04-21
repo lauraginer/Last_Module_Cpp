@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:36:36 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/21 17:43:15 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/04/21 17:44:51 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ static void printLimits(const std::string &literal)
 void ScalarConverter::convert(std::string literal)
 {
 	if(literal.empty())
-		throw ScalarConverter::GeneralError();
+	{
+		std::cout << "Process of convert isn't valid. Wrong input.\n";
+		return;
+	}
 	if(limits(literal))
 	{
 		printLimits(literal);
@@ -82,19 +85,15 @@ void ScalarConverter::convert(std::string literal)
 	}
 	int n = 0;
 	float fnum = 0;
-	double dnum = std::numeric_limits<double>::quiet_NaN();
+	double dnum = 0;
 	if(controlChar(literal, n, fnum, dnum))
 		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
 	if(controlInt(literal, n, fnum, dnum))
 		std::cout << "int: " << n << std::endl;
 	if(controlFloat(literal, fnum, dnum))
-		std::cout << "float: " << std::fixed << std::setprecision(1) << fnum << "f" << std::endl; //para forzar decimales
+		std::cout << "float: " << std::fixed << std::setprecision(1) << fnum << "f" << std::endl; //Para forzar decimales
 	if(controlDouble(literal, fnum, dnum))
 		std::cout << "double: " << std::fixed << std::setprecision(1) << dnum << std::endl;
-}
-const char* ScalarConverter::GeneralError::what() const throw()
-{
-	return("Process of convert isn't valid. Wrong input.");
 }
 
 bool controlChar(std::string &str, int &n, float &fnum, double &dnum)
@@ -103,8 +102,8 @@ bool controlChar(std::string &str, int &n, float &fnum, double &dnum)
 	{
 		n = static_cast<unsigned char>(str[0]);
 		fnum = static_cast<float>(n);
-		dnum = static_cast<double>(n); //por si acaso
-		if(!std::isprint(static_cast<unsigned char>(n))) //lo convertimos porque sino no devuelve en ascii
+		dnum = static_cast<double>(n);
+		if(!std::isprint(static_cast<unsigned char>(n))) //Para evitar en ascii
 		{
 			std::cout << "char: Non displayable" << std::endl;
 			return (false);
@@ -128,8 +127,6 @@ bool controlChar(std::string &str, int &n, float &fnum, double &dnum)
 		return(false);
 	}
 	return(true);
-	//ES mejor separar el casteo del cast por si es numerico o no lo es, y asi paso de validar dos veces con atoi y strtol
-	//ademas, no tiene sentido validar el tamaño de size si luego controlamos sus limites
 }
 bool controlInt(std::string &str, int &n, float &fnum, double &dnum)
 {
@@ -148,7 +145,6 @@ bool controlInt(std::string &str, int &n, float &fnum, double &dnum)
 	fnum = static_cast<float>(dn);
 	dnum = dn;
 	return(true);
-	//es mejor que el codigo sea repetitivo que modificarlo absolutamente todo para que quede mas limpio, el horno no esta pa bollos
 }
 bool controlFloat(std::string &str, float &fnum, double &dnum)
 {
@@ -170,8 +166,6 @@ bool controlFloat(std::string &str, float &fnum, double &dnum)
 	}
 	dnum = dd;
 	return(true);
-
-	//LOS LITERALES FLOAT Y DNUM se controlan en los dos primeros datos, al parecer
 }
 bool controlDouble(std::string &str, float &fnum, double &dnum)
 {
@@ -189,4 +183,3 @@ bool controlDouble(std::string &str, float &fnum, double &dnum)
 	return(true);
 	
 }
-//yo no se si esto tiene mucho sentido me agobia mucho tener que convertir otros tipos de datos antes que el que corresponde pero bueno
