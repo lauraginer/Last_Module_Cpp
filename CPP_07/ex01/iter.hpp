@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:45:34 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/21 21:16:31 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/04/21 21:25:38 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void iter(T *array, const size_t length, Function f)
 {
 	size_t len = 0;
 	
+	if (!array || !length)
+		std::cout << "Error: Invalid array/len" << std::endl;
 	while(len < length)
 	{
 		f(array[len]);
