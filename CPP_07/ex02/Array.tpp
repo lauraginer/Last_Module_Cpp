@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:06:32 by lauragm           #+#    #+#             */
-/*   Updated: 2026/04/24 21:44:42 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/27 14:30:05 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,76 @@
 #include <string>
 
 template <typename T>
-Array<T>::Array(): size(0), array(NULL){
-	array = new T[size];
+Array<T>::Array(): sizeArray(0), array(NULL){
+	array = new T[sizeArray];
 	std::cout << "Default constructor of Array called\n";
 };
 
 template <typename T>
-Array<T>::Array(unsigned int n): size(n), array(NULL){
+Array<T>::Array(unsigned int n): sizeArray(n), array(NULL){
 	array = new T[n];
 	std::cout << "Parameter constructor of Array called\n";
 }
 
 template <typename T>
-Array<T>::Array(const Array &other)
+Array<T>::Array(const Array &other): sizeArray(other.sizeArray), array(NULL)
 {
+	size_t i = 0;
+	array = new T[sizeArray];
+	while(i < sizeArray)
+	{
+		array[i] = other.array[i];
+		i++;
+	}
+	std::cout << "Copy constructor of Array called\n";
+}
+
+template <typename T>
+Array<T>& Array<T>::operator=(const Array& other)
+{
+	size_t i = 0;
 	std::cout << "Copy assignment operator of Array called\n";
 	if(this != &other)
 	{
-		size = other.size;
-		array = other.array; //Sospecho de manera muy fuerte que esta mal
+		delete[] array; //borramos el objeto que ya existe para evitar leaks
+		sizeArray = other.sizeArray;
+		array = new T[sizeArray];
+		while(i < sizeArray)
+		{
+			array[i] = other.array[i];
+			i++;
+		}
 	}
 	return(*this);
 }
 
+template <typename T>
+const char* Array<T>::IndexException::what() const throw()
+{
+    return "Error. Index is out of range!";
+}
+template <typename T>
+T& Array<T>::operator[](const unsigned int i)
+{
+	std::cout << "Subscript operator operator of Array called\n";
+	if((i >= sizeArray) || i < 0) 
+		throw IndexException();
+	return(array[i]);
+}
+template <typename T>
+Array<T>::~Array()
+{
+	delete[] array;
+	std::cout << "Destructor of Array called\n";
+}
+template <typename T>
+size_t Array<T>::size() const
+{
+	int i = 0;
+	while(i)
+	{
+		array[i++];
+	}
+	std::cout << "Total elements of array: " << i << std:endl;
+}
 //recuerda la deep copy!!
