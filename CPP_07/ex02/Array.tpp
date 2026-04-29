@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:06:32 by lauragm           #+#    #+#             */
-/*   Updated: 2026/04/27 14:30:05 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/29 22:08:55 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ size_t Array<T>::size() const
 		array[i++];
 	}
 	std::cout << "Total elements of array: " << i << std:endl;
-}
+} //ESTO ESTA MAL DIRIA YO, porque no deberia de recorrer el array como tal, sino imprimir el sizeArray no?
 //recuerda la deep copy!!
