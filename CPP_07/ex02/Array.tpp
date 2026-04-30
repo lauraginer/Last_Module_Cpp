@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:06:32 by lauragm           #+#    #+#             */
-/*   Updated: 2026/04/29 22:08:55 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:32:11 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,6 @@ Array<T>::~Array()
 template <typename T>
 size_t Array<T>::size() const
 {
-	int i = 0;
-	while(i)
-	{
-		array[i++];
-	}
-	std::cout << "Total elements of array: " << i << std:endl;
-} //ESTO ESTA MAL DIRIA YO, porque no deberia de recorrer el array como tal, sino imprimir el sizeArray no?
-//recuerda la deep copy!!
+	//std::cout << "Total elements of array: " << sizeArray << std::endl;
+	return(sizeArray);
+}
