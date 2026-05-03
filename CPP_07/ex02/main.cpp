@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 12:36:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/05/03 21:29:37 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/05/03 21:57:31 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ int main()
 		std::cout << std::endl;
 		std::cout << "--TEST 3: Testing subject test and arrays forms on heap--" << std::endl;
 		int *d = new int();
+		//Array<int> *e = new Array<int>(8);
 		std::cout << *d << '\n';
+		//std::cout << "Tamaño de e: " << e->size() << std::endl;
+
 		delete d;
+		delete e;
+		std::cout << "--TEST 4: Testing wrong cases--" << std::endl;
 
 		//probar con int * a = new int();` y luego muestre *a. Ejemplo de main.
 		//probar con char y double o float a ver si soporta
