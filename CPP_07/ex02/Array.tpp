@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:06:32 by lauragm           #+#    #+#             */
-/*   Updated: 2026/04/30 21:32:11 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/05/03 21:50:03 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Array<T>::Array(): sizeArray(0), array(NULL){
 
 template <typename T>
 Array<T>::Array(unsigned int n): sizeArray(n), array(NULL){
-	array = new T[n];
+	array = new T[n](); //Para mayor seguridad
 	std::cout << "Parameter constructor of Array called\n";
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 12:36:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/04/30 21:30:29 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/05/03 21:29:37 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,20 @@ int main()
 		Array<int> *a = new Array<int>(4);
 		Array<std::string> *b = new Array<std::string>(100);
 		Array<float> *c = new Array<float>(12);
+		Array<std::string> *cb = new Array<std::string>(*b); //para forzar el constructor de copia
 		std::cout << "Tamaño de a: " << a->size() << std::endl;
 		std::cout << "Tamaño de b: " << b->size() << std::endl;
 		std::cout << "Tamaño de c: " << c->size() << std::endl;
+		std::cout << "Tamaño de cb: " << cb->size() << std::endl;
 		delete a;
 		delete b;
 		delete c;
+		std::cout << std::endl;
+		std::cout << "--TEST 3: Testing subject test and arrays forms on heap--" << std::endl;
+		int *d = new int();
+		std::cout << *d << '\n';
+		delete d;
+
 		//probar con int * a = new int();` y luego muestre *a. Ejemplo de main.
 		//probar con char y double o float a ver si soporta
 		//probar con constructor de copia y asignacion
