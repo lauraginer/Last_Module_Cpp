@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:06:32 by lauragm           #+#    #+#             */
-/*   Updated: 2026/05/03 21:50:03 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/05/04 14:43:40 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ template <typename T>
 T& Array<T>::operator[](const unsigned int i)
 {
 	std::cout << "Subscript operator operator of Array called\n";
-	if((i >= sizeArray) || i < 0) 
+	if((i >= sizeArray)) 
 		throw IndexException();
 	return(array[i]);
 }

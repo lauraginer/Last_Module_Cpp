@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 12:36:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/05/03 21:57:31 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/05/04 14:52:22 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ int main()
 		delete b;
 		delete c;
 		std::cout << std::endl;
-		std::cout << "--TEST 3: Testing subject test and arrays forms on heap--" << std::endl;
+		std::cout << "--TEST 3: Testing subject test and arrays forms on stack and heap--" << std::endl;
 		int *d = new int();
-		//Array<int> *e = new Array<int>(8);
-		std::cout << *d << '\n';
-		//std::cout << "Tamaño de e: " << e->size() << std::endl;
-
+		Array<int> e(8);
+		e[-1] = 10;
+		std::cout << "Value of d: " << *d << '\n';
+		std::cout << "Value of e: " << e[0] << '\n';
 		delete d;
-		delete e;
+		std::cout << std::endl;
 		std::cout << "--TEST 4: Testing wrong cases--" << std::endl;
+		std::cout << "Value of d: " << e[5] << '\n';
 
 		//probar con int * a = new int();` y luego muestre *a. Ejemplo de main.
 		//probar con char y double o float a ver si soporta
@@ -61,7 +62,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "exception:" << '\n';
+		std::cerr << "exception: " << e.what() << '\n';
 	}
 	
 	
