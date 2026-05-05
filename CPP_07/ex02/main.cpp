@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 12:36:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/05/04 14:52:22 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:32:18 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,30 @@ int main()
 		std::cout << std::endl;
 		std::cout << "--TEST 3: Testing subject test and arrays forms on stack and heap--" << std::endl;
 		int *d = new int();
+		Array <char> w(5);
 		Array<int> e(8);
-		e[-1] = 10;
+		Array<int> cpye(e);
+		Array<float> *ptnum = new Array<float>(16);
+		e[0] = 10;
+		e[5] = 100;
+		w[0] = 'T';
+		w[1] = 'U';
+		(*ptnum)[9] = 1909; //Desreferenciar, porque si no intentas acceder al 9 objeto
 		std::cout << "Value of d: " << *d << '\n';
-		std::cout << "Value of e: " << e[0] << '\n';
+		std::cout << "Value of e[0]: " << e[0] << '\n';
+		std::cout << "Value of e[5]: " << e[5] << '\n';
+		std::cout << "Value of e[2]: " << e[2] << '\n';
+		std::cout << "Value of w[0]: " << w[0] << '\n';
+		std::cout << "Value of w[1]: " << w[1] << '\n';
+		std::cout << "Value of ptnum[9] to check pointer: " << (*ptnum)[9] << '\n';		
+		delete ptnum;
 		delete d;
 		std::cout << std::endl;
 		std::cout << "--TEST 4: Testing wrong cases--" << std::endl;
-		std::cout << "Value of d: " << e[5] << '\n';
-
-		//probar con int * a = new int();` y luego muestre *a. Ejemplo de main.
-		//probar con char y double o float a ver si soporta
-		//probar con constructor de copia y asignacion
-		//probar con casos que esten mal (al estilo un indice fuera de rango) blablabla
-
-		//aprende de nuevo punteros en c++ que estoy loca
+		Array<int> f(8);
+		f[0] = -10;
+		std::cout << "Value of f[-2] out of range: " << f[-2] << '\n';
+		std::cout << "Value of f[10] out of range: " << f[10] << '\n';
 	}
 	catch(const std::exception& e)
 	{
