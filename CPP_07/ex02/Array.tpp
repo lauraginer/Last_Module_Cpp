@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:06:32 by lauragm           #+#    #+#             */
-/*   Updated: 2026/05/04 14:43:40 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/05/05 18:13:40 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ const char* Array<T>::IndexException::what() const throw()
     return "Error. Index is out of range!";
 }
 template <typename T>
-T& Array<T>::operator[](const unsigned int i)
+T& Array<T>::operator[](const unsigned int i) const
 {
 	std::cout << "Subscript operator operator of Array called\n";
 	if((i >= sizeArray)) 

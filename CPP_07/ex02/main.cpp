@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 12:36:49 by lauragm           #+#    #+#             */
-/*   Updated: 2026/05/05 14:32:18 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/05/05 18:25:34 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ int main()
 		delete a;
 		delete b;
 		delete c;
+		delete cb;
 		std::cout << std::endl;
 		std::cout << "--TEST 3: Testing subject test and arrays forms on stack and heap--" << std::endl;
 		int *d = new int();
 		Array <char> w(5);
-		Array<int> e(8);
+		const Array<int> e(8);
 		Array<int> cpye(e);
 		Array<float> *ptnum = new Array<float>(16);
 		e[0] = 10;
@@ -65,13 +66,15 @@ int main()
 		std::cout << std::endl;
 		std::cout << "--TEST 4: Testing wrong cases--" << std::endl;
 		Array<int> f(8);
+		Array<int> empt; //Para intentar acceder al array
 		f[0] = -10;
 		std::cout << "Value of f[-2] out of range: " << f[-2] << '\n';
-		std::cout << "Value of f[10] out of range: " << f[10] << '\n';
+		//std::cout << "Value of f[10] out of range: " << f[10] << '\n';
+		//std::cout << empt[0] << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "exception: " << e.what() << '\n';
+		std::cerr << "Exception caption: " << e.what() << '\n';
 	}
 	
 	

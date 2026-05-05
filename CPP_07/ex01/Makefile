@@ -6,11 +6,11 @@
 #    By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/15 16:06:21 by lginer-m          #+#    #+#              #
-#    Updated: 2026/04/17 18:24:43 by lginer-m         ###   ########.fr        #
+#    Updated: 2026/05/05 18:49:52 by lginer-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := templates
+NAME := iter
 CC := c++
 CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 		# -fsanitize=address,undefined \

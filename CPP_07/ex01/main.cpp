@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 19:49:43 by lauragm           #+#    #+#             */
-/*   Updated: 2026/04/30 21:08:31 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/05/05 18:47:27 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int main()
 	std::cout << std::endl;
 	
 	std::cout << "--TEST 3: trying with a reference no-const and const--" << std::endl;
-	int (&ref1)[] = arr1;
-	const char* (&ref2)[] = arr2; //Las referencias para arrays son asi de raras
+	int (&ref1)[5] = arr1;
+	const char* (&ref2)[3] = arr2; //Las referencias para arrays son asi de raras
 	::iter(ref1, len1, incrementIter<int>);
 	::iter(ref1, len1, printIter<int>);
 	::iter(ref2, len2, printIter<const char *>);

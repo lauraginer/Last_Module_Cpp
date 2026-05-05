@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:45:34 by lginer-m          #+#    #+#             */
-/*   Updated: 2026/04/22 11:46:46 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/05/05 18:45:30 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define ITER_HPP
 
 #include <iostream>
-#include <ostream>
 
 template <typename T, typename Function>
 void iter(T *array, const size_t length, Function f)

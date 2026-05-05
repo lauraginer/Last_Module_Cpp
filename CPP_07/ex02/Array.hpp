@@ -6,7 +6,7 @@
 /*   By: lginer-m <lginer-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 12:38:01 by lauragm           #+#    #+#             */
-/*   Updated: 2026/04/30 20:58:03 by lginer-m         ###   ########.fr       */
+/*   Updated: 2026/05/05 18:18:30 by lginer-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,23 @@
 
 template<typename T>
 class Array{
-	//pone que debe de contener elementos de tipo T, aunque no dice cuales
 	private:
 		size_t sizeArray;
 		T *array;
 		
 	public:
-		Array(); //debe crear un array vacio
-		Array(unsigned int n); //debe crear un array de n elementos inicializados por defecto
+		Array();
+		Array(unsigned int n);
 		Array(const Array& other);
 		Array& operator=(const Array& other);
-		T& operator[](const unsigned int i);
-		~Array(); //no lo pide, pero por si acaso
-
-		size_t size() const; //debe de lanzar el numero de elementos
+		T& operator[](const unsigned int i) const;
+		~Array();
+		size_t size() const;
 		
 	class IndexException : public std::exception{
 			public:
 				const char *what() const throw();
 		};
-		/*segun el subject, tenemos que utilizar el operador new[] para alojar memoria (entiendo que tengo que hacer deep copy?????? no lo se dios), Los elementos deben poder accederse
-		con [], y si el indice esta fuera de rango, debemos de lanzar una excepción.*/
 };
 #include "Array.tpp"
 #endif
