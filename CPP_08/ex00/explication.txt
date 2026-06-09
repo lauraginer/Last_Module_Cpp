@@ -1,0 +1,64 @@
+---------Esquema basico-----------
+
+Contenedor
+Un contenedor en C++ es una estructura que sirve para guardar varios elementos.
+Ejemplos de contenedores de la STL:
+- vector
+- list
+- deque
+- set
+- map
+
+Vector
+Un vector es un tipo de contenedor de la STL. Es parecido a un array dinámico:
+- guarda elementos seguidos en memoria
+- permite acceder por índice
+- puede crecer o reducirse
+
+Ejemplo:
+std::vector<int> v;
+v.push_back(10);
+v.push_back(20);
+
+Ahora v contiene 10 y 20.
+
+Diferencia
+- Contenedor: término general
+- Vector: un contenedor concreto
+
+En easyfind puedes usar contenedores como std::vector<int> o std::list<int> para buscar un entero dentro.
+
+---------------------------------------------------------------------------
+1. ¿CÓMO SE COMPORTA EXACTAMENTE UN CONTENEDOR EN C++?
+---------------------------------------------------------------------------
+
+Para entender cómo usar un contenedor en C++, hay que entender 3 pilares clave de su comportamiento:
+
+A. GESTIÓN AUTOMÁTICA DE MEMORIA (Se cuida solo)
+En C, si querías un array de tamaño variable, tenías que usar `malloc`, contar el tamaño a mano, usar `realloc` si crecía, y `free` al terminar.
+Un contenedor de C++ hace todo esto por ti:
+- Si creas un `std::vector<int> v;`, empieza vacío y no ocupa casi nada.
+- Si haces `v.push_back(5);`, el contenedor pide memoria automáticamente (internamente hace un `new`).
+- Si metes 1000 elementos, él solo se redimensiona.
+- Cuando el objeto `v` se destruye (al salir de la función), él mismo libera toda la memoria. No hay "leaks".
+
+B. MÉTODOS COMUNES (Todos hablan el mismo idioma)
+La ventaja de la STL es que casi todos los contenedores comparten los mismos métodos básicos. Si aprendes a usar uno, sabes usar muchos:
+- `.size()`: Te dice cuántos elementos hay dentro.
+- `.empty()`: Te dice si está vacío (true o false).
+- `.clear()`: Borra todos los elementos de golpe.
+- `.push_back(valor)`: Añade un elemento al final (en vector, list, deque).
+
+C. EL CONCEPTO ESTRELLA: "LOS ITERADORES" (El GPS del contenedor)
+Los contenedores no siempre están en bloques de memoria seguidos (como el vector). Una `list` tiene sus elementos esparcidos por la memoria. 
+Entonces, ¿cómo los recorres todos de la misma forma sin importar qué contenedor sea? Usando ITERADORES.
+
+Un iterador es básicamente un "puntero inteligente" diseñado específicamente para navegar por un contenedor.
+- `.begin()`: Devuelve un iterador que apunta al PRIMER elemento del contenedor.
+- `.end()`: Devuelve un iterador que apunta a la posición "DESPUÉS DEL ÚLTIMO" elemento. (Ojo, no apunta al último, apunta al nulo que hay justo después. Sirve para saber cuándo parar).
+
+¿Por qué esto es clave para tu ejercicio easyfind?
+Porque el subject te dice: "analiza cómo se comportan los contenedores estándar".
+En C++, cuando la función estándar `std::find` busca algo, si lo encuentra, devuelve un iterador apuntando a ese valor. Si NO lo encuentra, devuelve el iterador de `.end()`.
+
+Por eso, la forma correcta en C++ de hacer tu ejercicio es que `easyfind` busque el número y, si lo encuentra, devuelva un ITERADOR apuntando a él. Si no, lanza tu excepción.
