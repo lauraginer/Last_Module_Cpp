@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/05 20:03:31 by lauragm           #+#    #+#             */
+/*   Updated: 2026/07/05 20:54:53 by lauragm          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef SPAN_CPP
+#define SPAN_CPP
+
+#include <exception>
+#include <iostream>
+
+class Span{
+	private:
+		unsigned int maxSize;
+		std::vector<int> numbers; //vector se crea inicialmente vacío, no hace falta incializarlo en los constructores
+	
+	public:
+		Span();
+		Span(unsigned int max);
+		Span(const std::string &nick, const int number);
+  		Span(const Span& other);
+    	Span& operator=(const Span& other);
+		~Span();
+
+		void addNumber(unsigned int number) //Su función es añadir un único número al span, si intentas añadir otro número cuando ya hay N elementos, deberás lanzar una excepción.
+		//es como un push_back
+		unsigned int shortestSpan() //Debe de encontrar la distancia más pequeña entre los números almacenados y retornarlo
+		unsigned int longestSpan() //Debe encontrar la distancia más grande entre los números almacenados y retornarlo.
+		//si en las dos funciones, no hay números almacenados, o solo hay uno, no se puede encontrar ningún intervalo. Por lo tanto, se lanza una excepción.
+		void allNumebers () //permite añadir muchos números de golpe utilizando un rango de iteradores.
+}
+
+class SpanError : public std::exception{
+		public:
+			const char *what() const throw();
+}
+
+			
+#endif
+
