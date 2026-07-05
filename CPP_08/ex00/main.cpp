@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 21:00:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/01 20:50:02 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/05 19:55:08 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ int main()
 {
 	try{
 		std::cout << "--TEST 1: TESTING WITH VECTORS--\n";
-		std::vector<int> numbers;
-		numbers.push_back(20);
-		numbers.push_back(4);
-		numbers.push_back(8);
-		numbers.push_back(15);
+		std::vector<int> numbers = {20, 4, 8, 15};
 		std::vector<int>::iterator it = easyfind(numbers, 15); //guardamos el result en otro iterador
 		std::cout << "Found it: " << *it << std::endl;
 		std::cout << std::endl;
