@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:28 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/05 21:04:01 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/07 20:26:46 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 Span::Span(): maxSize(0){
 	std::cout << "Default constructor of Span called\n";
 }
-Span::Span(unsiged int max): maxSize(max){
+Span::Span(unsigned int max): maxSize(max){
 	std::cout << "Parametrized constructor of Span called\n";
+}
+Span::Span(const Span& other): maxSize(other.maxSize){
+	std::cout << "Copy constructor of Span called\n";
+}
+Span::Span& operator=(const Span& other){
+	std::cout << "Copy assignment operator of Span called\n";
+	if(this != &other)
+		maxSize = other.maxSize
+	return(*this)
+}
+Span::~Span(){
+	std::cout << "Destructor of Span called\n";
+}
+void Span::addNumber(unsigned int number){
+	
+}
+
+const char* SpanError::what() const throw()
+{
+	return("Error. Something failed on Span");
 }
