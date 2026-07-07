@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:28 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/07 21:19:08 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/07 21:21:29 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ unsigned int Span::longestSpan()
 {
 	if(!numbers.size() || numbers.size() == 1)
 		throw SpanError();
-
+//falta implemetar la difrencia de rango
 }
 const char* SpanError::what() const throw()
 {
