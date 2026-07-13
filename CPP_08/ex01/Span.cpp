@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:28 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/13 22:21:28 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/14 00:25:53 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Span::Span(unsigned int max): maxSize(max)
 {
 	std::cout << "Parametrized constructor of Span called\n";
 }
-Span::Span(const Span& other): maxSize(other.maxSize)
+Span::Span(const Span& other): maxSize(other.maxSize), numbers(other.numbers)
 {
 	std::cout << "Copy constructor of Span called\n";
 }
@@ -29,14 +29,17 @@ Span& Span::operator=(const Span& other)
 {
 	std::cout << "Copy assignment operator of Span called\n";
 	if(this != &other)
+	{
 		maxSize = other.maxSize;
+		numbers = other.numbers;
+	}
 	return(*this);
 }
 Span::~Span()
 {
 	std::cout << "Destructor of Span called\n";
 }
-void Span::addNumber(unsigned int number)
+void Span::addNumber(int number)
 {
 	if(numbers.size() >= maxSize)
 		throw SpanError();

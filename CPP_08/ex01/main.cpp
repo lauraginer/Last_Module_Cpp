@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:02:33 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/13 22:27:03 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/14 00:10:51 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ int main()
     	std::cout << "deque longest: " << spDeque.longestSpan() << std::endl;
     	std::cout << std::endl;
 		
+		/*std::cout << "-- TEST 10000 NUMBERS --\n";
+	    Span se(10000);
+        std::vector<int> v;
+        for (int i = 0; i < 10000; ++i)
+            v.push_back(i);
+        se.allNumbers(v.begin(), v.end());
+        std::cout << "shortest: " << se.shortestSpan() << '\n';
+        std::cout << "longest: " << se.longestSpan() << '\n';*/
+		
 		std::cout << "--TEST 4: WORNG TESTS--\n";
 		Span sw(3);
         sw.addNumber(1);
@@ -80,8 +89,6 @@ int main()
 		w.addNumber(4);
 		std::cout << "shortest: " << w.shortestSpan() << std::endl;
     	std::cout << "longest: " << w.longestSpan() << std::endl;
-
-		//comprobar con 10.000 y que los tests funcionen como deben
 		return 0;
 	}
 	catch (const std::exception& e){
