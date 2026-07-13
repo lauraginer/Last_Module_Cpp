@@ -6,11 +6,11 @@
 #    By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/05 20:02:19 by lauragm           #+#    #+#              #
-#    Updated: 2026/07/13 21:00:09 by lauragm          ###   ########.fr        #
+#    Updated: 2026/07/13 22:21:04 by lauragm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := easyfind
+NAME := span
 CC := c++
 CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 		# -fsanitize=address,undefined \

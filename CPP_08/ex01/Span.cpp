@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:28 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/13 21:06:48 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/13 22:21:28 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,7 @@ unsigned int Span::longestSpan()
 	}
 	return(max - min);
 }
-
-
 const char* SpanError::what() const throw()
 {
-	return("Error. Something failed on Span");
+	return("Error. Something failed on Span!");
 }

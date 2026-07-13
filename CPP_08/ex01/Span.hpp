@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/13 20:59:41 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/13 22:00:36 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,18 @@ class Span{
 		unsigned int shortestSpan(); //Debe de encontrar la distancia más pequeña entre los números almacenados y retornarlo
 		unsigned int longestSpan(); //Debe encontrar la distancia más grande entre los números almacenados y retornarlo.
 		//si en las dos funciones, no hay números almacenados, o solo hay uno, no se puede encontrar ningún intervalo. Por lo tanto, se lanza una excepción.
-		void allNumebers(); //permite añadir muchos números de golpe utilizando un rango de iteradores.
+		template <typename it>
+		void allNumbers(it begin, it end); //permite añadir muchos números de golpe utilizando un rango de iteradores.
 };
-
+template <typename it> //en teoria deberia de ir aqui la definición
+void Span::allNumbers(it begin, it end)
+{
+	while(begin != end)
+	{
+		addNumber(*begin);
+		++begin;
+	}
+}
 class SpanError : public std::exception{
 		public:
 			const char *what() const throw();
