@@ -6,11 +6,12 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:28 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/07 21:21:29 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/13 21:06:48 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <algorithm>
 
 Span::Span(): maxSize(0)
 {
@@ -24,7 +25,7 @@ Span::Span(const Span& other): maxSize(other.maxSize)
 {
 	std::cout << "Copy constructor of Span called\n";
 }
-Span::Span& operator=(const Span& other)
+Span& Span::operator=(const Span& other)
 {
 	std::cout << "Copy assignment operator of Span called\n";
 	if(this != &other)
@@ -41,12 +42,43 @@ void Span::addNumber(unsigned int number)
 		throw SpanError();
 	numbers.push_back(number);
 }
+unsigned int Span::shortestSpan()
+{
+ 	if(numbers.size() < 2)
+		throw SpanError();
+	std::vector<int> cpy(numbers);
+	std::sort(cpy.begin(), cpy.end()); //ordenamos para que sea mas sencillo
+	unsigned int shortest = cpy[1] - cpy[0];
+	size_t i = 0;
+	while(i + 1 < cpy.size()) //el +1 porque sino, se va fuera de rango
+	{
+		unsigned int result = cpy[i + 1] - cpy[i];
+		if(result < shortest)
+			shortest = result;
+		++i;
+	}
+	return(shortest);
+}
 unsigned int Span::longestSpan()
 {
-	if(!numbers.size() || numbers.size() == 1)
+	if(numbers.size() < 2)
 		throw SpanError();
-//falta implemetar la difrencia de rango
+	
+	int max = numbers[0];
+	int min = numbers[0];
+	size_t i = 1;
+	while(i < numbers.size())
+	{
+		if(numbers[i] < min)
+			min = numbers[i];
+		if(numbers[i] > max)
+			max = numbers[i];
+		++i;
+	}
+	return(max - min);
 }
+
+
 const char* SpanError::what() const throw()
 {
 	return("Error. Something failed on Span");

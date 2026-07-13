@@ -6,9 +6,11 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:02:33 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/05 20:57:54 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/13 20:59:22 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Span.hpp"
 
 int main()
 {
@@ -27,5 +29,4 @@ int main()
 	catch (const std::exception& e){
 		std::cout << e.what() << std::endl;
 	}
-	
 }

@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/07 20:24:05 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/13 20:59:41 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ class Span{
 		unsigned int longestSpan(); //Debe encontrar la distancia más grande entre los números almacenados y retornarlo.
 		//si en las dos funciones, no hay números almacenados, o solo hay uno, no se puede encontrar ningún intervalo. Por lo tanto, se lanza una excepción.
 		void allNumebers(); //permite añadir muchos números de golpe utilizando un rango de iteradores.
-}
+};
 
 class SpanError : public std::exception{
 		public:
 			const char *what() const throw();
-}
-
-			
+};		
 #endif
 
