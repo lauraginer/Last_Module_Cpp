@@ -1,0 +1,117 @@
+MutantStack - idea general
+
+1. ¿Qué es std::stack?
+
+std::stack no guarda los elementos directamente como si fuera un array visible.
+Es un adaptador de contenedor: por dentro usa otro contenedor para almacenar los datos.
+
+Por defecto, ese contenedor suele ser std::deque.
+
+Podemos imaginarlo así de forma simplificada:
+
+template <class T>
+class stack
+{
+protected:
+    std::deque<T> c;
+
+public:
+    void push(const T& value) { c.push_back(value); }
+    void pop() { c.pop_back(); }
+    T& top() { return c.back(); }
+};
+
+La interfaz pública de std::stack solo deja usar operaciones de pila:
+push, pop, top, empty y size.
+
+2. ¿Por qué no se puede iterar un std::stack?
+
+Porque std::stack no expone begin() ni end() en su interfaz pública.
+Aunque internamente use un deque, ese deque está oculto.
+
+3. ¿Qué hace MutantStack?
+
+MutantStack hereda de std::stack<T> y hace públicos los iteradores del contenedor interno.
+Así se puede recorrer la pila como si fuera un contenedor normal.
+
+La clave está en el miembro protegido c de std::stack.
+Como la clase hija hereda de std::stack, puede acceder a ese contenedor con this->c.
+
+Entonces:
+- this->c.begin() devuelve el primer elemento
+- this->c.end() devuelve el iterador posterior al último
+
+4. ¿Por qué se usan aliases de iterador?
+
+Dentro de MutantStack se define algo así:
+
+using iterator = typename std::stack<T>::container_type::iterator;
+using const_iterator = typename std::stack<T>::container_type::const_iterator;
+
+Eso sirve para no escribir cada vez la ruta completa del iterador del contenedor interno.
+
+5. ¿Qué métodos añade MutantStack?
+
+MutantStack suele añadir estas funciones:
+
+- begin()
+- end()
+- begin() const
+- end() const
+
+Las versiones normales devuelven iterator.
+Las versiones const devuelven const_iterator.
+
+6. ¿Cómo funciona internamente?
+
+MutantStack no cambia la lógica de stack.
+Solo abre una puerta para iterar sobre el contenedor interno que stack ya estaba usando.
+
+En otras palabras:
+- stack sigue comportándose como pila
+- MutantStack permite además recorrer sus elementos
+
+7. Esquema mental
+
+             std::deque
+        +-----------------+
+        | 5 17 3 8 10     |
+        +-----------------+
+             ↑
+             │
+      contenedor protegido c
+             │
+             ▼
+        +------------------+
+        |    std::stack    |
+        | push()           |
+        | pop()            |
+        | top()            |
+        +------------------+
+             ▲
+             │ herencia
+             ▼
+        +------------------+
+        |  MutantStack     |
+        | begin()          |
+        | end()            |
+        +------------------+
+
+8. Ejemplo de uso
+
+MutantStack<int> m;
+m.push(10);
+m.push(20);
+m.push(30);
+
+for (MutantStack<int>::iterator it = m.begin(); it != m.end(); ++it)
+    std::cout << *it << std::endl;
+
+Eso imprime los elementos guardados en la pila en el orden en que están almacenados internamente.
+
+9. Resumen corto
+
+- std::stack oculta su contenedor interno.
+- MutantStack hereda de std::stack.
+- MutantStack expone begin() y end().
+- Gracias a eso, una pila deja de ser solo una pila y también puede iterarse.
