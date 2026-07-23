@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/20 22:11:17 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/23 21:38:25 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class MutantStack : public std::stack<T>{
     	MutantStack& operator=(const MutantStack& other);
 		~MutantStack();
 
-		using iterator = typename std::stack<T>::container_type::iterator;
-		using const_iterator = typename std::stack<T>::container_type::const_iterator;
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 		iterator begin(); //podemos acceder al elemento protegido de c del stack (funciona internamente como un deque)
 		iterator end();
 		const_iterator begin() const;
@@ -40,6 +40,8 @@ class MutantError : public std::exception{
 		public:
 			const char *what() const throw();
 };
+
+#include "MutantStack.tpp" //se pone aquí para leer justo la implementacion una vez leida la clase
 
 #endif
 

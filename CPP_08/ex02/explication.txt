@@ -52,7 +52,7 @@ Eso sirve para no escribir cada vez la ruta completa del iterador del contenedor
 
 5. ¿Qué métodos añade MutantStack?
 
-MutantStack suele añadir estas funciones:
+MutantStack tiene estas funciones:
 
 - begin()
 - end()
