@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/23 22:09:43 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/23 22:28:43 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,3 +85,6 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 }
+
+//Probar con distintos tipos de mutamt: std::string.. probar con uno vacío y probar el const iterator supongo
+//Quita la excepcion, porque pa que si no hay casos de error en este ejercicio
