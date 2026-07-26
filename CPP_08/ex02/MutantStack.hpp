@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/23 21:38:25 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/26 22:22:54 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ class MutantStack : public std::stack<T>{
 	/*la idea es crear una version de stack donde se pueda iterar, entonces entiendo que se puede heredar de ese contenedor ya que
 	el enunciado te dice que tiene que tener todas las funciones miembros disponibles y se va a poner mi abuela a copiarlas todas. En algún
 	punto hay que utilizar templates, imagino que en el anterior para iteradores seguro*/
-};
-class MutantError : public std::exception{
-		public:
-			const char *what() const throw();
 };
 
 #include "MutantStack.tpp" //se pone aquí para leer justo la implementacion una vez leida la clase

@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/20 22:20:39 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/26 22:22:45 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,4 @@ template <typename T>
 typename MutantStack<T>::const_iterator MutantStack<T>::end() const
 {
 	return this->c.end();
-}
-const char* MutantError::what() const throw()
-{
-	return("Error. Something was wrong on MutantStack!");
 }
