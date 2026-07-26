@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/23 22:28:43 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/26 21:03:00 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,22 @@ int main()
 			std::cout << "element: " << *it << std::endl;
 			++it;
 		}
-		std::stack<int> s(mstack);
+		std::cout << std::endl;
+		
+		MutantStack<std::string> sstack;
+		sstack.push("hello");
+		sstack.push("hola");
+		sstack.push("klk");
+		std::cout << "The last element: " <<  sstack.top() << std::endl;
+		sstack.pop();
+		std::cout << "The size of mutant: " << sstack.size() << std::endl;
+		MutantStack<std::string>::iterator itt = sstack.begin();
+		MutantStack<std::string>::iterator itte = sstack.end();
+		while (itt != itte)
+		{
+			std::cout << "element: " << *itt << std::endl;
+			++itt;
+		}
 		
 		std::cout << "\n-- TEST 2: TESTING WITH LIST--\n";
         std::list<int> lst;
