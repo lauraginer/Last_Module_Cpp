@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 21:00:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/05 20:57:36 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/26 22:55:31 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main()
 		//no puedo probar con map, porque el iterador de este no apunta a un int, sino a un par clave/valor
 		//ademas, tanto set como map, son contenedores asociativos
 		
-		std::cout << "--TEST 4: WRONG CASES--\n";
+		std::cout << "--TEST 3: WRONG CASES--\n";
 		std::vector<int> empty;
 		std::vector<int>::iterator emt = easyfind(empty, 0);
 		std::cout << "Found it: " << *emt << std::endl;

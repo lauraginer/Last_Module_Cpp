@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:28 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/14 00:25:53 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/26 22:48:56 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void Span::addNumber(int number)
 		throw SpanError();
 	numbers.push_back(number);
 }
-unsigned int Span::shortestSpan()
+unsigned int Span::shortestSpan() const
 {
  	if(numbers.size() < 2)
 		throw SpanError();
@@ -62,7 +62,7 @@ unsigned int Span::shortestSpan()
 	}
 	return(shortest);
 }
-unsigned int Span::longestSpan()
+unsigned int Span::longestSpan() const
 {
 	if(numbers.size() < 2)
 		throw SpanError();

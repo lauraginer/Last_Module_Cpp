@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/14 00:27:50 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/07/26 22:48:39 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class Span{
 
 		void addNumber(int number); //Su función es añadir un único número al span, si intentas añadir otro número cuando ya hay N elementos, deberás lanzar una excepción.
 		//es como un push_back
-		unsigned int shortestSpan(); //Debe de encontrar la distancia más pequeña entre los números almacenados y retornarlo
-		unsigned int longestSpan(); //Debe encontrar la distancia más grande entre los números almacenados y retornarlo.
+		unsigned int shortestSpan() const; //Debe de encontrar la distancia más pequeña entre los números almacenados y retornarlo
+		unsigned int longestSpan() const; //Debe encontrar la distancia más grande entre los números almacenados y retornarlo.
 		//si en las dos funciones, no hay números almacenados, o solo hay uno, no se puede encontrar ningún intervalo. Por lo tanto, se lanza una excepción.
 		template <typename it>
 		void allNumbers(it begin, it end); //permite añadir muchos números de golpe utilizando un rango de iteradores.
