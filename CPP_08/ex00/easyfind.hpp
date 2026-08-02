@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 21:00:13 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/05 20:13:34 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/02 20:49:40 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,3 @@ typename T::iterator easyfind(T& container, int value) //recuerda que los templa
 };
 //el subject dice que la función debe servir para CUALQUIER contenedor, el template se encarga de que funcione con todos.
 #endif
-
-//NO SE SI DEBERIA DE ACEPTAR CONST T&, SI ES QUE TIENE MUCHO SENTIDO EN ESTE EJERCICIO
