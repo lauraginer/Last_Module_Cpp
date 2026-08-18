@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 20:03:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/26 22:22:54 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/02 20:48:49 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,13 @@ class MutantStack : public std::stack<T>{
 
 		typedef typename std::stack<T>::container_type::iterator iterator;
 		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
-		iterator begin(); //podemos acceder al elemento protegido de c del stack (funciona internamente como un deque)
+		iterator begin(); //Podemos acceder al elemento protegido de c del stack (funciona internamente como un deque)
 		iterator end();
 		const_iterator begin() const;
 		const_iterator end() const;
-		
-	/*la idea es crear una version de stack donde se pueda iterar, entonces entiendo que se puede heredar de ese contenedor ya que
-	el enunciado te dice que tiene que tener todas las funciones miembros disponibles y se va a poner mi abuela a copiarlas todas. En algún
-	punto hay que utilizar templates, imagino que en el anterior para iteradores seguro*/
 };
 
-#include "MutantStack.tpp" //se pone aquí para leer justo la implementacion una vez leida la clase
+#include "MutantStack.tpp" //Se pone aquí para leer justo la implementacion una vez leida la clase
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 20:03:28 by lauragm           #+#    #+#             */
-/*   Updated: 2026/07/26 22:48:56 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/18 20:58:47 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ unsigned int Span::shortestSpan() const
  	if(numbers.size() < 2)
 		throw SpanError();
 	std::vector<int> cpy(numbers);
-	std::sort(cpy.begin(), cpy.end()); //ordenamos para que sea mas sencillo
+	std::sort(cpy.begin(), cpy.end()); //Ordenamos para que sea mas sencillo
 	unsigned int shortest = cpy[1] - cpy[0];
 	size_t i = 0;
-	while(i + 1 < cpy.size()) //el +1 porque sino, se va fuera de rango
+	while(i + 1 < cpy.size()) //El +1 porque sino, se va fuera de rango
 	{
 		unsigned int result = cpy[i + 1] - cpy[i];
 		if(result < shortest)
