@@ -6,7 +6,7 @@
 #    By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#              #
-#    Updated: 2026/08/18 20:37:11 by lauragm          ###   ########.fr        #
+#    Updated: 2026/08/20 21:16:31 by lauragm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 
 OBJS_DIR := build
 
-SRCS = main.cpp
+SRCS = main.cpp BitcoinExchange.cpp
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
 
 BLUE = \033[0;34m
