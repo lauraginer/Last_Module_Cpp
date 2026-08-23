@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/20 22:06:31 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/23 23:16:12 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ BitcoinExchange::~BitcoinExchange()
 {
 	std::cout << "Destructor of BitcoinExchange called\n";
 }
-
 const char* errorArgument::what() const throw()
 {
 	return("Error: could not open file");
