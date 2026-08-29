@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/30 00:08:09 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/30 01:45:28 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <exception>
 #include <iostream>
 #include <cstdlib>
+#include <fstream> //leer archivos
 #include <map>
 
 class BitcoinExchange{
@@ -27,6 +28,8 @@ class BitcoinExchange{
   		BitcoinExchange(const BitcoinExchange& other);
     	BitcoinExchange& operator=(const BitcoinExchange& other);
 		~BitcoinExchange();
+		
+		int fillMap(std::ifstream &fileData);
 };
 
 void eraseSpaces(std::string &str);

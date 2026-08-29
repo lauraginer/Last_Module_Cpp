@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/30 00:07:01 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/30 01:44:53 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,32 @@ BitcoinExchange::~BitcoinExchange()
 {
 	std::cout << "Destructor of BitcoinExchange called\n";
 }
+int BitcoinExchange::fillMap(std::ifstream &fileData)
+{
+	std::string str;
+	std::getline(fileData, str);
+	while(std::getline(fileData, str))
+	{
+		size_t pos = str.find(',');
+		if(pos == std::string::npos)
+		{
+			std::cout << "Error: Something's wrong on data" << str << std::endl;
+			continue; //para evitar overflow
+		}
+		std::string realDate = str.substr(0, pos);
+		std::string realValue = str.substr(pos + 1);
+		eraseSpaces(realDate);
+		eraseSpaces(realValue);
+		//double price = atof(realValue.c_str());
+	}
+	return(0);
+}
+
 const char* errorArgument::what() const throw()
 {
 	return("Error: could not open file");
 }
+
 void eraseSpaces(std::string &str)
 {
 	size_t i;
@@ -102,7 +124,7 @@ int parserDate(std::string &date)
 int parserValue(std::string &value, double &num)
 {
 	eraseSpaces(value);
-	double num = atof(value.c_str()); //atof para tener en cuenta decimales
+	num = atof(value.c_str()); //atof para tener en cuenta decimales
 	if(num < 0)
 	{
 		std::cout << "Error: not a positive number " << std::endl;

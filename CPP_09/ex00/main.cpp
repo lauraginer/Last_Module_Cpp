@@ -6,23 +6,25 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/30 00:08:03 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/30 01:45:18 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-#include <fstream> //leer archivos
-
 
 int main(int argc, char **argv)
 {
 	try{
 		if(argc != 2)
 			throw errorArgument();
-		std::ifstream file(argv[1]); //aqui se abre el archivo
-		if(!file.is_open())
+		
+		std::ifstream fileData("data.csv"); //aqui se abre el archivo
+		std::ifstream file(argv[1]); 
+		if(!file.is_open() || !fileData.is_open())
 			throw errorArgument();
 		
+		BitcoinExchange btc;
+		btc.fillMap(fileData);
 		std::string line; 
 		std::getline(file, line); //saltamos el enunciado
 		while(std::getline(file, line)) 
