@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/20 21:44:42 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/30 00:08:09 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <exception>
 #include <iostream>
+#include <cstdlib>
 #include <map>
 
 class BitcoinExchange{
@@ -27,6 +28,13 @@ class BitcoinExchange{
     	BitcoinExchange& operator=(const BitcoinExchange& other);
 		~BitcoinExchange();
 };
+
+void eraseSpaces(std::string &str);
+int parserFormatD(std::string &date);
+int atoiDate(std::string &date);
+int parserDate(std::string &date);
+int parserValue(std::string &value, double &num);
+
 class errorArgument: public std::exception{
 	public:
 		const char *what() const throw();
