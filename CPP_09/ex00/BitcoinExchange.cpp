@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/23 23:16:12 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/29 21:51:57 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ BitcoinExchange::~BitcoinExchange()
 const char* errorArgument::what() const throw()
 {
 	return("Error: could not open file");
-};
+}
 
 /*flujo: main()
  ├── cargar data.csv en el map        

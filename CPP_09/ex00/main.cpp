@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/25 21:48:07 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/08/29 23:24:46 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,37 @@ int atoiDate(std::string &date)
 		return(1);
 	
 	int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	if(day < 1 || day > daysInMonth[month - 1])
-		return(1);
 	if(month == 2 && ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))) //caso aislado: año bisiesto NO ESTA BIEN
 		daysInMonth[1] = 29;
-		
-	/*std::cout << "year: " << year << std::endl;
-	std::cout << "month: " << month << std::endl;
-	std::cout << "day: " << day << std::endl;*/
+	if(day < 1 || day > daysInMonth[month - 1])
+		return(1);	
 	return(0);
 }
 
 int parserDate(std::string &date)
 {
 	eraseSpaces(date);
-	//eraseSpaces(value); acuerdate de que esto va en la funcion que modifica el valor
 	if(parserFormatD(date))
 		return(1);
 	if(atoiDate(date))
 		return(1);
-	std::cout << date << std::endl;
+	return(0);
+}
+
+int parserValue(std::string &value, double &num)
+{
+	eraseSpaces(value);
+	double num = atof(value.c_str()); //atof para tener en cuenta decimales
+	if(num < 0)
+	{
+		std::cout << "Error: not a positive number " << std::endl;
+		return(-1);
+	}
+	if(num > 1000)
+	{
+		std::cout << "Error: too large a number " << std::endl;
+		return(-1);
+	}
 	return(0);
 }
 
@@ -103,11 +114,15 @@ int main(int argc, char **argv)
 			}	
 			std::string date = line.substr(0, posLine);
 			std::string value = line.substr(posLine + 1);
-			//std::cout << value << std::endl;
 			if(parserDate(date))
-				std::cout << "Error: Invalid date => " << line << std::endl;
-			
-			
+			{
+				std::cout << "Error: invalid date => " << line << std::endl;
+				continue;
+			}
+			double num; //para guardarnos el valor de parserValue
+			if(!parserValue(value, num))
+				continue;
+			std::cout << line << std::endl;
 			//paseamos la fecha, formato valido
 			//parseamos el valor, si es un valor negativo y despues si es demasiado grande
 			//no nos podemos olvidar de la comparacion de si no existe coincidencia exacta, coger la fecha anterior
