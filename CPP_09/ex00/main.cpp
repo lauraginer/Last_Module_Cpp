@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/02 20:55:13 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/02 23:27:00 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 			std::string value = line.substr(posLine + 1);
 			if(parserDate(date))
 			{
-				std::cout << "Error: invalid date => " << line << std::endl;
+				std::cout << "Error: bad input => " << line << std::endl;
 				continue;
 			}
 			double num; //para guardarnos el valor de parserValue

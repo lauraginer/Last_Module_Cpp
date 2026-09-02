@@ -6,11 +6,12 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/02 20:51:46 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/02 23:24:17 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -68,12 +69,12 @@ int BitcoinExchange::getUpdate(std::string &date, double value)
 		}
 		--it;
 	}
-	std::cout << date << " => " << value << " = " << (value * it->second) << std::endl;
+	std::cout << date << " => " << value << " = " << (value * it->second) << std::endl; //podemos utilizar std::fixed << std::setprecision(2) para numeros muy grandes
 	return(0);
 }
 const char* errorArgument::what() const throw()
 {
-	return("Error: could not open file");
+	return("Error: could not open file.");
 }
 void eraseSpaces(std::string &str)
 {
@@ -138,15 +139,20 @@ int parserDate(std::string &date)
 int parserValue(std::string &value, double &num)
 {
 	eraseSpaces(value);
+	if(value.empty())
+	{
+		std::cout << "Error: bad input => " << "the scope is empty!" << std::endl; // o el mensaje que uses para "bad input"
+		return(-1);
+	}
 	num = atof(value.c_str()); //atof para tener en cuenta decimales
 	if(num < 0)
 	{
-		std::cout << "Error: not a positive number " << std::endl;
+		std::cout << "Error: not a positive number." << std::endl;
 		return(-1);
 	}
 	if(num > 1000)
 	{
-		std::cout << "Error: too large a number " << std::endl;
+		std::cout << "Error: too large a number." << std::endl;
 		return(-1);
 	}
 	return(0);
