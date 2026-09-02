@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/30 01:45:18 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/02 20:55:13 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int main(int argc, char **argv)
 	try{
 		if(argc != 2)
 			throw errorArgument();
-		
 		std::ifstream fileData("data.csv"); //aqui se abre el archivo
 		std::ifstream file(argv[1]); 
 		if(!file.is_open() || !fileData.is_open())
@@ -43,14 +42,10 @@ int main(int argc, char **argv)
 				continue;
 			}
 			double num; //para guardarnos el valor de parserValue
-			if(!parserValue(value, num))
+			if(parserValue(value, num))
 				continue;
-			std::cout << line << std::endl;
-			//paseamos la fecha, formato valido
-			//parseamos el valor, si es un valor negativo y despues si es demasiado grande
-			//no nos podemos olvidar de la comparacion de si no existe coincidencia exacta, coger la fecha anterior
+			btc.getUpdate(date, num); //comprobación + calculo
 		}
-		
 	}
 	catch (const std::exception& e){
 		std::cout << e.what() << std::endl;

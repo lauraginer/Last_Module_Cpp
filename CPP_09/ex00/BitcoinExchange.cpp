@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/30 01:44:53 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/02 20:51:46 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,32 @@ int BitcoinExchange::fillMap(std::ifstream &fileData)
 		std::string realValue = str.substr(pos + 1);
 		eraseSpaces(realDate);
 		eraseSpaces(realValue);
-		//double price = atof(realValue.c_str());
+		double price = atof(realValue.c_str());
+	
+		data[realDate] = price; //crea automaticamente la clave[] si no existe, y añade el valor price
 	}
 	return(0);
 }
-
+int BitcoinExchange::getUpdate(std::string &date, double value)
+{
+	//first apunta a la clave, second al valor
+	std::map<std::string, float>::iterator it = data.lower_bound(date); //da el primer elemento con clave igual o mayor que date
+	if(it == data.end() || it->first != date)
+	{
+		if(it == data.begin()) //esta dentro porque si no peta, al final siempre va a pasar por la primera linea
+		{
+			std::cout << "Error: no rate available for date " << date << std::endl;
+			return(-1);
+		}
+		--it;
+	}
+	std::cout << date << " => " << value << " = " << (value * it->second) << std::endl;
+	return(0);
+}
 const char* errorArgument::what() const throw()
 {
 	return("Error: could not open file");
 }
-
 void eraseSpaces(std::string &str)
 {
 	size_t i;
@@ -110,7 +126,6 @@ int atoiDate(std::string &date)
 		return(1);	
 	return(0);
 }
-
 int parserDate(std::string &date)
 {
 	eraseSpaces(date);
@@ -120,7 +135,6 @@ int parserDate(std::string &date)
 		return(1);
 	return(0);
 }
-
 int parserValue(std::string &value, double &num)
 {
 	eraseSpaces(value);
@@ -137,10 +151,3 @@ int parserValue(std::string &value, double &num)
 	}
 	return(0);
 }
-/*flujo: main()
- ├── cargar data.csv en el map        
- ├── abrir input.txt
- └── while(getline del input.txt)       
-       ├── parsear línea
-       ├── validar fecha/valor
-       └── buscar en el map ya cargado, calcular, imprimir*/

@@ -1,0 +1,31 @@
+-Vector tipo <map>
+Este vector guarda pares de datos relacionados, es decir, cada clave tiene asociado un valor:
+
+CLAVE            VALOR
+"2011-01-03"  →  0.3
+"2011-01-09"  →  0.32
+"2012-01-11"  →  7.1
+
+Cada vez que ejecutamos "data[realDate] = price" estamos añadiendo una fila nueva a la tabla(si no existe), o actualizando
+una que ya existía con esa misma clave. La tabla va creciendo en funcion de las claves que se van añadiendo junto con el valor,
+progresivamente (de ahi el bucle getline y que sea el mejor vector para este ejercicio).
+
+Para recorrer el vector, necesitamos obviamente de un iterador. Cada elemento de un std::map<K, V> es internamente un std::pair<const K, V>. 
+Y std::pair siempre tiene exactamente estos dos miembros:
+
+.first → el primer tipo del par
+.second → el segundo tipo del par
+
+Asi que esto se traduce basicamente en: it->first → es del tipo std::string → la clave (la fecha), y
+it->second → es del tipo float → el valor (el precio).
+
+
+-Flujo para recordar antes de entregar:
+
+ main()
+ ├── cargar data.csv en el map        
+ ├── abrir input.txt
+ └── while(getline del input.txt)       
+       ├── parsear línea
+       ├── validar fecha/valor
+       └── buscar en el map ya cargado, calcular, imprimir

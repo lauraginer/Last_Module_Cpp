@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/08/30 01:45:28 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/02 20:25:37 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ class BitcoinExchange{
 		~BitcoinExchange();
 		
 		int fillMap(std::ifstream &fileData);
+		int getUpdate(std::string &date, double value);
+
 };
 
 void eraseSpaces(std::string &str);
