@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/02 20:25:37 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/03 13:04:22 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void eraseSpaces(std::string &str);
 int parserFormatD(std::string &date);
 int atoiDate(std::string &date);
 int parserDate(std::string &date);
-int parserValue(std::string &value, double &num);
+int parserFormatV(std::string &value, std::string &line);
+int parserValue(std::string &value, double &num, std::string &line);
 
 class errorArgument: public std::exception{
 	public:

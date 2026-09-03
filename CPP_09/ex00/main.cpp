@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/02 23:27:00 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/03 13:47:06 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ int main(int argc, char **argv)
 		BitcoinExchange btc;
 		btc.fillMap(fileData);
 		std::string line; 
-		std::getline(file, line); //saltamos el enunciado
+		if(!std::getline(file, line)) //saltamos el enunciado
+			throw errorArgument();
 		while(std::getline(file, line)) 
 		{
+			if(line.empty())
+			{
+				std::cout << "Error: empty line." << std::endl;
+				continue;
+			}
 			size_t posLine = line.find('|');
 			if(posLine == std::string::npos) //npos es lo que devuelve find cuando no encuentra el pos
 			{
@@ -42,7 +48,7 @@ int main(int argc, char **argv)
 				continue;
 			}
 			double num; //para guardarnos el valor de parserValue
-			if(parserValue(value, num))
+			if(parserValue(value, num, line))
 				continue;
 			btc.getUpdate(date, num); //comprobación + calculo
 		}

@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 20:02:19 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/02 23:24:17 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/03 13:49:36 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ BitcoinExchange::~BitcoinExchange()
 int BitcoinExchange::fillMap(std::ifstream &fileData)
 {
 	std::string str;
-	std::getline(fileData, str);
+	if(!std::getline(fileData, str))
+		throw errorArgument();
 	while(std::getline(fileData, str))
 	{
+		if(str.empty())
+		{
+			std::cout << "Error: empty line on data." << std::endl;
+			continue;
+		}
 		size_t pos = str.find(',');
 		if(pos == std::string::npos)
 		{
-			std::cout << "Error: Something's wrong on data" << str << std::endl;
+			std::cout << "Error: Something's wrong on data." << str << std::endl;
 			continue; //para evitar overflow
 		}
 		std::string realDate = str.substr(0, pos);
@@ -136,24 +142,52 @@ int parserDate(std::string &date)
 		return(1);
 	return(0);
 }
-int parserValue(std::string &value, double &num)
+int parserFormatV(std::string &value, std::string &line)
 {
 	eraseSpaces(value);
 	if(value.empty())
 	{
-		std::cout << "Error: bad input => " << "the scope is empty!" << std::endl; // o el mensaje que uses para "bad input"
-		return(-1);
+		std::cout << "Error: bad input => " << line << std::endl;
+		return(1);
 	}
+	size_t i = 0;
+	int count = 0;
+	if(value[0] == '+' || value[0] == '-')
+		i = 1;
+	while(i < value.length())
+	{
+		if(value[i] == '.')
+		{
+			count++;
+			if(count > 1)
+			{
+				std::cout << "Error: bad input => " << line << std::endl;
+				return(1);
+			}
+		}
+		else if(!isdigit(value[i]))
+		{
+			std::cout << "Error: bad input => " << line << std::endl;
+			return(1);
+		}
+		i++;
+	}
+	return(0);
+}
+int parserValue(std::string &value, double &num, std::string &line)
+{
+	if(parserFormatV(value, line))
+		return(1);
 	num = atof(value.c_str()); //atof para tener en cuenta decimales
 	if(num < 0)
 	{
 		std::cout << "Error: not a positive number." << std::endl;
-		return(-1);
+		return(1);
 	}
 	if(num > 1000)
 	{
 		std::cout << "Error: too large a number." << std::endl;
-		return(-1);
+		return(1);
 	}
 	return(0);
 }
