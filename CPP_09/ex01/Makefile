@@ -6,11 +6,11 @@
 #    By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/03 14:04:21 by lauragm           #+#    #+#              #
-#    Updated: 2026/09/03 14:04:35 by lauragm          ###   ########.fr        #
+#    Updated: 2026/09/03 19:42:09 by lauragm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := btc
+NAME := RPN
 CC := c++
 CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 		# -fsanitize=address,undefined \
@@ -18,7 +18,7 @@ CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -g\
 
 OBJS_DIR := build
 
-SRCS = main.cpp BitcoinExchange.cpp
+SRCS = main.cpp RPN.cpp
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
 
 BLUE = \033[0;34m
