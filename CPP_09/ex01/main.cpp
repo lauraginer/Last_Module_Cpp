@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 14:04:37 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/03 21:15:53 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/04 13:56:40 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,14 @@ int main(int argc, char **argv)
 	}
 	std::istringstream input(argv[1]);
 	std::string token;
+	RPN rpn;
 	while(input >> token)
 	{
-		size_t i = 0; //pa reiniciar
-		if(isdigit(token[i]))
-		{
-			if(token.size() > 1)
-			{
-				std::cerr << "Error" << std::endl;
-				return (1);
-			}
-			i++;
-			std::cout << token << std::endl;
-		}
-		/*if(str[i] == '-' || str[i] == '+' || str[i] == '/' || str[i] == '*')
-			i++;
-		else if(str[i] == ' ')
-			i++;
-		else if(isdigit(str[i]))
-			i++;
-		else
+		if(rpn.parserTokens(token))
 		{
 			std::cerr << "Error" << std::endl;
 			return(1);
-		}*/
+		}
 	}
 	return(0);
 }
