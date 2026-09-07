@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 18:35:40 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/04 14:57:23 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/07 20:15:50 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class RPN{
     	RPN& operator=(const RPN& other);
 		~RPN();
 
+		int getResult();
+		int getSize();
 		int parserTokens(std::string token);
 		int calculate(int b, int a, char op);
 };

@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 14:04:37 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/04 13:56:40 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/07 20:34:11 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ int main(int argc, char **argv)
 			return(1);
 		}
 	}
+	if(rpn.getSize() != 1)
+	{
+		std::cerr << "Error" << std::endl;
+		return(1);
+	}
+	std::cout << rpn.getResult() << std::endl; //getter que devuelve el data.top()
 	return(0);
 }
-
-//el programa debe procesar la expresión y mostrar el resultado correcto por la salida estándar (stdout)
-//si ocurre error, debe mpstarse un mensaje por stderr
