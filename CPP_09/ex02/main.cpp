@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/08 21:37:37 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/08 21:46:47 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,16 @@ int main (int argc, char **argv)
 			return(1);
 		}
 		size_t j = 0;
+		if(token[0] == '+')
+			j = 1;
+		if(j == token.size())//para evitar un + solo
+		{
+			std::cerr << "Error" << std::endl;
+			return(1);
+		}
 		while(j < token.size())
 		{
-			if(token[0] == '+') //algo esta mal
-				j = 1;
-			else if(!isdigit(token[j]))
+			if(!isdigit(token[j]))
 			{
 				std::cerr << "Error" << std::endl;
 				return(1);
