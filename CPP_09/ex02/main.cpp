@@ -6,50 +6,75 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/08 21:46:47 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/09 21:51:16 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <cstdlib>
+#include <cerrno>
+#include <climits>
 
-int main (int argc, char **argv)
+void parsingInput(std::string input, PmergeMe &data )
 {
-	if(argc < 2)
+	std::string token(input);
+	if(token.empty())
+		throw error();
+	size_t j = 0;
+	if(token[0] == '+')
+		j = 1;
+	if(j == token.size()) //para evitar un + solo
+		throw error();
+	while(j < token.size()) 
 	{
-		std::cerr << "Error: bad input" << std::endl;
-		return(1);
+		if(!isdigit(token[j]))
+			throw error();
+		j++;
 	}
-	int i = 1;
-	while(i < argc)
+	errno = 0;
+	char *endptr; //se detiene cuando no es numero
+	long num = strtol(token.c_str(), &endptr, 10);
+	if(errno == ERANGE || num > INT_MAX || num < 0)
+		throw error();
+	data.base.push_back(static_cast<int>(num)); //rellenamos los vectores
+	data.base2.push_back(static_cast<int>(num));
+}
+void printFirstLine(PmergeMe &data)
+{
+	size_t i = 0;
+	std::cout << "Before: ";
+	while(i < data.base.size())
 	{
-		std::string token(argv[i]);
-		if(token.empty())
-		{
-			std::cerr << "Error: bad input" << std::endl;
-			return(1);
-		}
-		size_t j = 0;
-		if(token[0] == '+')
-			j = 1;
-		if(j == token.size())//para evitar un + solo
-		{
-			std::cerr << "Error" << std::endl;
-			return(1);
-		}
-		while(j < token.size())
-		{
-			if(!isdigit(token[j]))
-			{
-				std::cerr << "Error" << std::endl;
-				return(1);
-			}
-			j++;
-		}
-		std::cout << token << std::endl; 
+		std::cout << data.base[i] << " ";
 		i++;
 	}
+	std::cout << std::endl;
+	/*for (std::list<int>::iterator it = data.base2.begin(); it != data.base2.end(); ++it)
+	{
+		std::cout << *it << " ";
+	}*/
+}	
+int main(int argc, char **argv)
+{
+	try{
+		if(argc < 2)
+			throw error();
+		
+		PmergeMe data;
+		int i = 1;
+		while(i < argc)
+		{
+			parsingInput(argv[i], data);
+			i++;
+		}
+		printFirstLine(data);
 	
-	return(0);
+		return(0);
+	}
+	catch(const std::exception& e){
+		std::cerr << e.what() << std::endl;
+	}
+	
 }
 
 //En la primera línea debes mostrar un texto explícito seguido de la secuencia de enteros positivos sin ordenar.
