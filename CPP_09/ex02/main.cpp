@@ -6,69 +6,72 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/09 21:51:16 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/10 21:53:40 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <cstdlib>
-#include <cerrno>
-#include <climits>
 
-void parsingInput(std::string input, PmergeMe &data )
+std::vector<int> firstStep(std::vector<int> vec)
 {
-	std::string token(input);
-	if(token.empty())
-		throw error();
-	size_t j = 0;
-	if(token[0] == '+')
-		j = 1;
-	if(j == token.size()) //para evitar un + solo
-		throw error();
-	while(j < token.size()) 
-	{
-		if(!isdigit(token[j]))
-			throw error();
-		j++;
-	}
-	errno = 0;
-	char *endptr; //se detiene cuando no es numero
-	long num = strtol(token.c_str(), &endptr, 10);
-	if(errno == ERANGE || num > INT_MAX || num < 0)
-		throw error();
-	data.base.push_back(static_cast<int>(num)); //rellenamos los vectores
-	data.base2.push_back(static_cast<int>(num));
-}
-void printFirstLine(PmergeMe &data)
-{
+	std::vector<int> minors;
+	std::vector<int> largers;
 	size_t i = 0;
-	std::cout << "Before: ";
-	while(i < data.base.size())
+	//size_t z = 0;
+	
+	if (vec.size() <= 1) //CASO BASE: si el vector tiene 0 o 1 elementos, ya está "ordenado" 
+		return(vec);
+	
+	while(i + 1 < vec.size())
 	{
-		std::cout << data.base[i] << " ";
-		i++;
+		if(vec[i] < vec[i + 1])
+		{
+			minors.push_back(vec[i]);
+			largers.push_back(vec[i + 1]);
+		}
+		else
+		{
+			minors.push_back(vec[i + 1]);
+			largers.push_back(vec[i]);
+		}
+		i += 2; //recorremos por pares
 	}
-	std::cout << std::endl;
-	/*for (std::list<int>::iterator it = data.base2.begin(); it != data.base2.end(); ++it)
+	int alone = 0; //numero inpar
+	if(i < vec.size())
 	{
-		std::cout << *it << " ";
+		alone = vec[i];
+		std::cout << alone << std::endl;
+	}
+	
+	/*size_t d = 0;
+	std::cout << "Minors: ";
+	while(d < minors.size())
+	{
+		std::cout << minors[d] << " ";
+		d++;
+	}
+	std::cout << "\n";
+	std::cout << "Largers: ";
+	while(z < largers.size())
+	{
+		std::cout << largers[z] << " ";
+		z++;
 	}*/
-}	
+	std::vector<int> largestOrdered = firstStep(largers);
+	//tenemos que meter, segun el algoritmo los menores y el suelto dentro de la lista de largers, de forma ordenada
+	return(largestOrdered);
+}
+
 int main(int argc, char **argv)
 {
 	try{
 		if(argc < 2)
 			throw error();
-		
 		PmergeMe data;
-		int i = 1;
-		while(i < argc)
-		{
-			parsingInput(argv[i], data);
-			i++;
-		}
-		printFirstLine(data);
-	
+		data.parsingInput(argv, argc);
+		data.printFirstLine();
+		firstStep(data.base);
 		return(0);
 	}
 	catch(const std::exception& e){
