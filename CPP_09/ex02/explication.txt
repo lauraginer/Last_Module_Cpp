@@ -8,24 +8,22 @@ La idea general, en una frase
 Ordena una parte del problema recursivamente, y luego inserta el resto usando búsqueda binaria, en un orden muy específico que minimiza comparaciones.
 
 Los pasos, en detalle
-Paso 1: Emparejar
 
+Paso 1: Emparejar
 Agrupas la secuencia de entrada de dos en dos, en el orden en que aparecen. Si hay un número impar de elementos, uno queda sin pareja (lo llamamos el "elemento suelto" o straggler).
 
 Paso 2: Ordenar cada pareja
-
 Dentro de cada pareja, comparas los dos elementos y decides cuál es el mayor y cuál el menor. Esto te da una comparación por pareja — es la única comparación "obligatoria" de este nivel.
 
 Formas dos grupos:
 
 El grupo de mayores (uno por pareja).
 El grupo de menores, donde cada menor sigue "vinculado" mentalmente a su mayor correspondiente (esto importa más adelante).
-Paso 3: Ordenar recursivamente el grupo de mayores
 
+Paso 3: Ordenar recursivamente el grupo de mayores
 Aplicas exactamente el mismo proceso (Pasos 1-2-3...) sobre el grupo de mayores, hasta que el sub-problema sea trivial (0 o 1 elemento). Esto te da una secuencia de mayores ya completamente ordenada.
 
 Paso 4: Insertar los menores en la secuencia ordenada — aquí está lo interesante
-
 Aquí es donde el algoritmo se vuelve inteligente. En vez de insertar los menores en cualquier orden, se usa un orden muy específico basado en la secuencia de Jacobsthal, para minimizar el número de comparaciones en las búsquedas binarias.
 
 ¿Por qué importa el orden de inserción?

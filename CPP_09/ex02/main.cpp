@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/10 21:53:40 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/13 21:21:39 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ std::vector<int> firstStep(std::vector<int> vec)
 	}*/
 	std::vector<int> largestOrdered = firstStep(largers);
 	//tenemos que meter, segun el algoritmo los menores y el suelto dentro de la lista de largers, de forma ordenada
+	//necesitamosm la lista de Jacostall para indicar los indices correspondientes a los números menores, esta lista funciona como límites de bloque
 	return(largestOrdered);
 }
 

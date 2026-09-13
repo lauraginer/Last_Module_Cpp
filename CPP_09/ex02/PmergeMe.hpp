@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:33 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/10 20:38:32 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/13 18:09:34 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 #include <iostream>
 #include <vector>
-#include <list>
+#include <deque>
 #include <exception>
 
 
 class PmergeMe{
 	public:
 		std::vector<int> base;
-		std::list<int> base2;
+		std::deque<int> base2;
 		
 		PmergeMe();
   		PmergeMe(const PmergeMe& other);
