@@ -6,12 +6,28 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/13 21:21:39 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/15 21:44:24 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <cstdlib>
+
+std::vector<size_t> generateJacobstall(size_t index)
+{
+	std::vector<size_t> jacob;
+	jacob.push_back(0);
+	jacob.push_back(1);
+
+	size_t i = 2;
+	while(jacob[i - 1] < n)
+	{
+		size_t next = jacob[i - 1] + 2 * jacob[i - 2]; //formula traducida a código: J(n) = J(n-1) + 2*J(n-2)
+		jacob.push_back(next);
+		i++;
+	}
+	return(jacob);
+}
 
 std::vector<int> firstStep(std::vector<int> vec)
 {
@@ -62,6 +78,32 @@ std::vector<int> firstStep(std::vector<int> vec)
 	//tenemos que meter, segun el algoritmo los menores y el suelto dentro de la lista de largers, de forma ordenada
 	//necesitamosm la lista de Jacostall para indicar los indices correspondientes a los números menores, esta lista funciona como límites de bloque
 	return(largestOrdered);
+}
+
+std::vector<size_t> buildOrder(size_t n)
+{
+	std::vector<size_t> jacob = generateJacobstall(n);
+	std::vector<size_t> order;
+
+	size_t j = 2;
+	size_t prev = 0; //tope inferior
+	while(prev < n)
+	{
+		size_t begin = jacob[j]; //tope superior
+		if(begin > n)
+			begin = n;
+		
+		size_t k = begin;
+		while(k > prev)
+		{
+			order.push_back(k);
+			k--;
+		}
+		prev = begin;
+		if(j < jacob.size())
+			j++;
+	}
+	return(order);
 }
 
 int main(int argc, char **argv)
