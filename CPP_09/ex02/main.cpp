@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/15 21:44:24 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/16 00:24:57 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ std::vector<size_t> generateJacobstall(size_t index)
 	jacob.push_back(1);
 
 	size_t i = 2;
-	while(jacob[i - 1] < n)
+	while(jacob.size() < 3 || jacob[i - 1] < index)
 	{
 		size_t next = jacob[i - 1] + 2 * jacob[i - 2]; //formula traducida a código: J(n) = J(n-1) + 2*J(n-2)
 		jacob.push_back(next);
@@ -115,6 +115,13 @@ int main(int argc, char **argv)
 		data.parsingInput(argv, argc);
 		data.printFirstLine();
 		firstStep(data.base);
+		std::vector<size_t> order = buildOrder(8);
+		size_t i = 0;
+		while(i < order.size())
+		{
+			std::cout << order[i] << std::endl;
+			i++;
+		}
 		return(0);
 	}
 	catch(const std::exception& e){
