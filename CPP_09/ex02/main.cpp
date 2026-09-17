@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/17 23:56:58 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/18 01:00:43 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,47 @@ std::vector<size_t> generateJacobstall(size_t index)
 		i++;
 	}
 	return(jacob);
+}
+
+std::vector<size_t> buildOrder(size_t n)
+{
+	std::vector<size_t> jacob = generateJacobstall(n);
+	std::vector<size_t> order;
+
+	size_t j = 2;
+	size_t prev = 0; //tope inferior
+	while(prev < n)
+	{
+		size_t begin = jacob[j]; //tope superior
+		if(begin > n)
+			begin = n;
+		
+		size_t k = begin;
+		while(k > prev)
+		{
+			order.push_back(k);
+			k--;
+		}
+		prev = begin;
+		if(j < jacob.size())
+			j++;
+	}
+	return(order);
+}
+
+void secondPart(std::vector<int> &minors, std::vector<int> &largestOrdered) //la idea es que entren los menores
+{
+	std::vector<size_t> vec = buildOrder(minors.size()); //la secuencia de imdices ya correcta y ordenada tras jacobstall
+	size_t x = 0;
+	std::vector<int> final;
+	(void)largestOrdered;
+	while(x < vec.size())
+	{
+		size_t j = vec[x]; //el valor ya ordenado de builOrder
+		final.push_back(minors[j - 1]);
+		x++;
+	}
+	//aqui incluimos mejor el cambio binario (funcion aparte porque tambien hay que añadir el alone con el calculo)
 }
 
 std::vector<int> firstStep(std::vector<int> vec)
@@ -75,54 +116,10 @@ std::vector<int> firstStep(std::vector<int> vec)
 		z++;
 	}*/
 	std::vector<int> largestOrdered = firstStep(largers);
+	secondPart(minors, largestOrdered);
 	//tenemos que meter, segun el algoritmo los menores y el suelto dentro de la lista de largers, de forma ordenada
 	//necesitamosm la lista de Jacostall para indicar los indices correspondientes a los números menores, esta lista funciona como límites de bloque
 	return(largestOrdered);
-}
-
-std::vector<size_t> buildOrder(size_t n)
-{
-	std::vector<size_t> jacob = generateJacobstall(n);
-	std::vector<size_t> order;
-
-	size_t j = 2;
-	size_t prev = 0; //tope inferior
-	while(prev < n)
-	{
-		size_t begin = jacob[j]; //tope superior
-		if(begin > n)
-			begin = n;
-		
-		size_t k = begin;
-		while(k > prev)
-		{
-			order.push_back(k);
-			k--;
-		}
-		prev = begin;
-		if(j < jacob.size())
-			j++;
-	}
-	return(order);
-}
-
-std::vector<int> secondPart(std::vector<int> minors) //la idea es que entren los menores
-{
-	std::vector<size_t> vec = buildOrder(minors.size());
-	size_t i = 0;
-	size_t x = 0;
-	std::vector<int> final;
-	while(i < minors.size())
-	{
-		if(x < vec.size())
-		{
-			size_t j = vec[x]; //el valor ordenado de vec
-			//quiero meter el valor de minors dentro de final con el indice correcto
-			final.push_back(minors[j]);
-			x++;
-		}
-		i++;
-	}
 }
 
 int main(int argc, char **argv)
@@ -133,8 +130,7 @@ int main(int argc, char **argv)
 		PmergeMe data;
 		data.parsingInput(argv, argc);
 		data.printFirstLine();
-		std::vector<int> result = firstStep(data.base);
-		secondPart(result);
+		firstStep(data.base);
 		
 		/*std::vector<size_t> order = buildOrder(8); //hardcodeado para comprobar que funcione
 		size_t i = 0;
