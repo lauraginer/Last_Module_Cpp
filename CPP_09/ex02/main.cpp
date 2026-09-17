@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:25 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/16 00:24:57 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/17 23:56:58 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,25 @@ std::vector<size_t> buildOrder(size_t n)
 	return(order);
 }
 
+std::vector<int> secondPart(std::vector<int> minors) //la idea es que entren los menores
+{
+	std::vector<size_t> vec = buildOrder(minors.size());
+	size_t i = 0;
+	size_t x = 0;
+	std::vector<int> final;
+	while(i < minors.size())
+	{
+		if(x < vec.size())
+		{
+			size_t j = vec[x]; //el valor ordenado de vec
+			//quiero meter el valor de minors dentro de final con el indice correcto
+			final.push_back(minors[j]);
+			x++;
+		}
+		i++;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	try{
@@ -114,15 +133,17 @@ int main(int argc, char **argv)
 		PmergeMe data;
 		data.parsingInput(argv, argc);
 		data.printFirstLine();
-		firstStep(data.base);
-		std::vector<size_t> order = buildOrder(8);
+		std::vector<int> result = firstStep(data.base);
+		secondPart(result);
+		
+		/*std::vector<size_t> order = buildOrder(8); //hardcodeado para comprobar que funcione
 		size_t i = 0;
 		while(i < order.size())
 		{
 			std::cout << order[i] << std::endl;
 			i++;
 		}
-		return(0);
+		return(0);*/
 	}
 	catch(const std::exception& e){
 		std::cerr << e.what() << std::endl;
