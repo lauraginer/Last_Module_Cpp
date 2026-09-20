@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:33 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/20 21:42:09 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/20 21:59:54 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <vector>
 #include <deque>
 #include <exception>
-
 
 class PmergeMe{
 	public:
@@ -32,9 +31,15 @@ class PmergeMe{
 		~PmergeMe();
 
 		void parsingInput(char** argv, int argc);
-		void printResultLine(bool flag);
-
+		void printResultLine(bool flag);		
 };
+
+std::vector<size_t> generateJacobstall(size_t index);
+std::vector<size_t> buildOrder(size_t n);
+void calculeBinary(std::vector<int> &largest, int value);
+void secondStep(std::vector<int> &minors, std::vector<int> &largestOrdered);
+
+std::vector<int> firstStep(std::vector<int> vec);
 
 	class error: public std::exception{
 	public:
