@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/13 18:33:31 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/20 21:42:01 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,27 @@ void PmergeMe::parsingInput(char** argv, int argc)
 		i++;
 	}
 }
-void PmergeMe::printFirstLine()
+void PmergeMe::printResultLine(bool flag)
 {
 	size_t i = 0;
-	std::cout << "Before: ";
-	while(i < base.size())
+	if(flag == false)
 	{
-		std::cout << base[i] << " ";
-		i++;
+		std::cout << "Before:";
+		while(i < base.size())
+		{
+			std::cout << " " << base[i] ;
+			i++;
+		}
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
-}	
+	else
+	{
+		std::cout << "After:";
+		while(i < result.size())
+		{
+			std::cout << " " << result[i] ;
+			i++;
+		}
+		std::cout << std::endl;
+	}
+}

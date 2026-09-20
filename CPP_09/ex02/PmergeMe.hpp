@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:33 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/13 18:09:34 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/20 21:42:09 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 class PmergeMe{
 	public:
 		std::vector<int> base;
+		std::vector<int> result;
 		std::deque<int> base2;
+		std::deque<int> result2;
 		
 		PmergeMe();
   		PmergeMe(const PmergeMe& other);
@@ -30,7 +32,7 @@ class PmergeMe{
 		~PmergeMe();
 
 		void parsingInput(char** argv, int argc);
-		void printFirstLine();
+		void printResultLine(bool flag);
 
 };
 
