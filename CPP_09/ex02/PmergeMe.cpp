@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/21 20:51:04 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/24 19:22:14 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ PmergeMe::PmergeMe()
 {
 	//std::cout << "Default constructor of PmergeMe called\n";
 }
-PmergeMe::PmergeMe(const PmergeMe& other): base(other.base), base2(other.base2)
+PmergeMe::PmergeMe(const PmergeMe& other): base(other.base), result(other.result), base2(other.base2), result2(other.result2)
 {
 	std::cout << "Copy constructor of PmergeMe called\n";
 }
@@ -29,7 +29,9 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 	if(this != &other)
 	{
 		base = other.base;
+		result = other.result;
 		base2 = other.base2;
+		result2 = other.result2;
 	}
 	return(*this);
 }
