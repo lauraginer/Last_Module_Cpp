@@ -165,19 +165,15 @@ void calculeBinary(std::vector<int> &largest, int value) //inserta uno por uno d
 	size_t left = 0; //limite izq. aqui van los mayores (o si es igual tamb)
 	size_t right = largest.size(); //limite der. aqui van los menores 
 	
-	while(left < right) //salimos cuando los valores son iguales, ya no queda nada que reducir
+	while(left < right)
 	{
-		size_t mid = (left + right) / 2;
-		if(value < largest[mid]) //comparas con el INDICE
+		size_t mid = (left + right) / 2; //INDICE
+		if(value < largest[mid]) //comparas con el valor real
 			right = mid;
 		else
 			left = mid + 1; //añadimos el +1 porque sabemos que mid no es la pos correcta
-		//std::cout << "La mitad es: " << mid << std::endl;
-		//std::cout << "valor minors: " << value <<std::endl;
 	}
 	largest.insert(largest.begin() + left, value);
-	/*esto es una movida, si le sumas a un iterador x numeros, estas desplazando esa cantidad de posiciones, 
-	entonces con insert, lo que ocurre es que insertas el valor en esa misma pos y lo demas lo desplaza a la derecha*/
 }
 void secondStep(std::vector<int> &minors, std::vector<int> &largestOrdered) //la idea es que entren los menores
 {
@@ -223,7 +219,7 @@ std::vector<int> firstStep(std::vector<int> vec)
 		odd = true;
 	}
 	std::vector<int> largestOrdered = firstStep(largers);
-	secondStep(minors, largestOrdered); //tambien hace la insercion binaria aqui directamente
+	secondStep(minors, largestOrdered);
 	if(odd)
 		calculeBinary(largestOrdered, alone);
 	return(largestOrdered);
@@ -253,10 +249,10 @@ std::deque<size_t> deqBuildOrder(size_t n)
 	std::deque<size_t> order;
 
 	size_t j = 2;
-	size_t prev = 0; //tope inferior
+	size_t prev = 0;
 	while(prev < n)
 	{
-		size_t begin = jacob[j]; //tope superior
+		size_t begin = jacob[j];
 		if(begin > n)
 			begin = n;
 		
@@ -287,14 +283,14 @@ void deqCalculeBinary(std::deque<int> &largest, int value) //inserta uno por uno
 	}
 	largest.insert(largest.begin() + left, value);
 }
-void deqSecondStep(std::deque<int> &minors, std::deque<int> &largestOrdered) //la idea es que entren los menores
+void deqSecondStep(std::deque<int> &minors, std::deque<int> &largestOrdered)
 {
-	std::deque<size_t> vec = deqBuildOrder(minors.size()); //la secuencia de imdices ya correcta y ordenada tras jacobstall
+	std::deque<size_t> vec = deqBuildOrder(minors.size());
 	size_t x = 0;
 	std::deque<int> finalOrdered;
 	while(x < vec.size())
 	{
-		size_t j = vec[x]; //el valor ya ordenado de builOrder
+		size_t j = vec[x];
 		finalOrdered.push_back(minors[j - 1]);
 		deqCalculeBinary(largestOrdered, minors[j - 1]);
 		x++;
@@ -331,7 +327,7 @@ std::deque<int> deqFirstStep(std::deque<int> vec)
 		odd = true;
 	}
 	std::deque<int> largestOrdered = deqFirstStep(largers);
-	deqSecondStep(minors, largestOrdered); //tambien hace la insercion binaria aqui directamente
+	deqSecondStep(minors, largestOrdered); 
 	if(odd)
 		deqCalculeBinary(largestOrdered, alone);
 	return(largestOrdered);
