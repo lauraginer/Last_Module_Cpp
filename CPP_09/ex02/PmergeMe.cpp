@@ -6,7 +6,7 @@
 /*   By: lauragm <lauragm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 21:36:31 by lauragm           #+#    #+#             */
-/*   Updated: 2026/09/24 19:22:14 by lauragm          ###   ########.fr       */
+/*   Updated: 2026/09/25 21:46:29 by lauragm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void calculeBinary(std::vector<int> &largest, int value) //inserta uno por uno d
 	}
 	largest.insert(largest.begin() + left, value);
 }
-void secondStep(std::vector<int> &minors, std::vector<int> &largestOrdered) //la idea es que entren los menores
+void secondStep(std::vector<int> &minors, std::vector<int> &largestOrdered) 
 {
 	std::vector<size_t> vec = buildOrder(minors.size()); //la secuencia de imdices ya correcta y ordenada tras jacobstall
 	size_t x = 0;
